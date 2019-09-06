@@ -286,6 +286,7 @@ MonoBehaviour:
   boomerangPrefab: {fileID: 17914694266026874, guid: f1b562cad5e01e94ca44a12259b94724,
     type: 3}
   boomerangPath: {fileID: 1624303867}
+  curveHeight: 3
 --- !u!4 &1919037039
 Transform:
   m_ObjectHideFlags: 0

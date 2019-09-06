@@ -8,6 +8,7 @@ public class PlayerBoomerang : MonoBehaviour
 	// Inspector Fields
 	[SerializeField] private GameObject boomerangPrefab;
 	[SerializeField] private BezierCurve boomerangPath;
+	[SerializeField] private int curveHeight = 1;
 
 	private Vector2[] bezierPoints = new Vector2[3];
 
@@ -41,12 +42,14 @@ public class PlayerBoomerang : MonoBehaviour
 
 		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 point1 = Vector2.zero;
+		point1 = Vector2.Lerp(boomerangPath.points[0], mousePos, 0.5f);
+		
 
 		// If the position of the mouse is to the left of the player then move the second point to be on the left and vise versa.
 		if (mousePos.x > transform.position.x)
-			point1 = new Vector2(transform.position.x + 2, transform.position.y + 1);
+			point1.x += curveHeight;
 		else if (mousePos.x < transform.position.x)
-			point1 = new Vector2(transform.position.x - 2, transform.position.y + 1);
+			point1.x -= curveHeight;
 
 		boomerangPath.points[1] = point1;
 		boomerangPath.points[2] = mousePos; // Set the endpoint to be the mouse position.
@@ -58,4 +61,5 @@ public class PlayerBoomerang : MonoBehaviour
 		Gizmos.DrawWireSphere(boomerangPath.points[1], 1f);
 		Gizmos.DrawWireSphere(boomerangPath.points[2], 1f);
 	}
+	
 }
