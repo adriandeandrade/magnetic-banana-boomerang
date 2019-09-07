@@ -71,11 +71,14 @@ namespace MagneticBananaBoomerang.Characters
         {
             velocity = direction;
             rBody.velocity = velocity * moveSpeed;
+			UpdateAnimator();
         }
 
         public virtual void UpdateAnimator()
         {
-            // TODO: Update animator parameters here.
+            animator.SetFloat("Horizontal", velocity.x);
+            animator.SetFloat("Vertical", velocity.y);
+			animator.SetFloat("Speed", velocity.sqrMagnitude);
         }
 
         public virtual void GetFacingDirection()
