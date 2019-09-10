@@ -66,6 +66,6 @@ public class WaveSpawner : MonoBehaviour
 	public Transform GetRandomSpawnPoint()
 	{
 		Transform spawnPoint = spawnPoints[Random.Range(1, (spawnPoints.Count - 1))];
-		return spawnPoints[0];
+		return spawnPoint;
 	}
 }
