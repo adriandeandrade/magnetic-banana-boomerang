@@ -4,17 +4,31 @@ using System;
 using UnityEngine;
 using PathCreation;
 
-public class BoomerangController : MonoBehaviour
+public class BoomerangManager : BaseManager
 {
 	// Inspector Fields
-	[SerializeField] private GameObject boomerangPrefab;
-	[SerializeField] private Transform boomerangLandPosition;
 
 	private bool canThrowBoomerang = true;
 	private GameObject currentBoomerangInstance; // To keep reference of the boomerang.
 
+	private GameObject boomerangPrefab;
+	private GameObject boomerangLandPointPrefab;
+	private Transform boomerangLandPosition;
+
 	// Components
 	private PathCreator pathCreator;
+	private Player player;
+
+	public override void Initialize()
+	{
+		GameObject boomerangResource = Resources.Load("Prefabs/Boomerang") as GameObject;
+		GameObject landPointResource = Resources.Load("Prefabs/BoomerangLandPoint") as GameObject;
+
+		boomerangPrefab = boomerangResource;
+		boomerangLandPointPrefab = landPointResource;
+		
+		boomerangLandPosition = Instantiate(boomerangLandPointPrefab).transform;
+	}
 
 	private void OnEnable()
 	{
@@ -32,6 +46,8 @@ public class BoomerangController : MonoBehaviour
 		{
 			pathCreator = FindObjectOfType<PathCreator>();
 		}
+
+		player = FindObjectOfType<Player>();
 	}
 
 	private void Update()
@@ -46,8 +62,8 @@ public class BoomerangController : MonoBehaviour
 	{
 		GeneratePath();
 
-		currentBoomerangInstance = Instantiate(boomerangPrefab, transform.position, Quaternion.identity);
-		currentBoomerangInstance.GetComponent<Boomerang>().StartPath(this, pathCreator);
+		currentBoomerangInstance = Instantiate(boomerangPrefab, player.transform.position, Quaternion.identity);
+		currentBoomerangInstance.GetComponent<Boomerang>().InitializeBoomerang(this, pathCreator);
 
 		canThrowBoomerang = false;
 
@@ -67,7 +83,7 @@ public class BoomerangController : MonoBehaviour
 	{
 		List<Vector2> points = new List<Vector2>(); // Create an empty list to store the points of the path.
 
-		points.Add(transform.position); // Set the first point to be the position of this object. (Player)
+		points.Add(player.transform.position); // Set the first point to be the position of this object. (Player)
 		points.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition)); // Set the second point to mouse position in world spacej.
 
 		BezierPath bezierPath = new BezierPath(points, true, PathSpace.xy); // Create and assign a new BezierPath.
