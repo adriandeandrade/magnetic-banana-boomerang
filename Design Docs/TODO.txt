@@ -2,3 +2,7 @@ Todo
 - Create wave spawning system for enemies.
 - Create boomerang interaction system.
 - Create item pickup system.
+- Add camera controller.
+
+Things to fix
+- Boomerang always goes left first. Add ability to throw left or right.

@@ -8,6 +8,7 @@ public class Player : BaseCharacterMovement
 	public override void Update()
 	{
 		HandleMovement();
+		base.Update();
 	}
 
 	private void HandleMovement()

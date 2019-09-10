@@ -58,7 +58,7 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void Update()
 		{
-			
+			GetFacingDirection();
 		}
 
         public virtual void FixedUpdate()
@@ -79,6 +79,7 @@ namespace MagneticBananaBoomerang.Characters
             animator.SetFloat("Horizontal", velocity.x);
             animator.SetFloat("Vertical", velocity.y);
 			animator.SetFloat("Speed", velocity.sqrMagnitude);
+			animator.SetFloat("FacingDirection", facingDirection);
         }
 
         public virtual void GetFacingDirection()
