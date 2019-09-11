@@ -255,10 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79759a8fba4e7224ba382c4ba6ab034d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boomerangPrefab: {fileID: 17914694266026874, guid: f1b562cad5e01e94ca44a12259b94724,
-    type: 3}
-  boomerangPath: {fileID: 1357377759}
-  curveHeight: 3
 --- !u!4 &812541620
 Transform:
   m_ObjectHideFlags: 0
@@ -385,13 +381,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 821570367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6902d1217be2942e38311afc5aeae012, type: 3}
+  m_Script: {fileID: 11500000, guid: 406e8c9fbb4fda54ea76193f769318c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 812541614}
-  maxRadius: 2
-  minRadius: 0.7
-  speed: 40
+  maxRadius: 10
+  minRadius: 5
+  speed: 2
   currentDest: {x: 0, y: 0, z: 0}
 --- !u!1 &1202242071
 GameObject:
@@ -505,10 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667cbd799e2e6a7469b3bc6916e01486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {x: 0.4228493, y: 0, z: 0}
-  - {x: 3.6197472, y: 3.798026, z: 0}
-  - {x: 1.2499297, y: 5.380539, z: 0}
 --- !u!4 &1357377760
 Transform:
   m_ObjectHideFlags: 0
