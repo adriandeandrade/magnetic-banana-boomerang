@@ -44,21 +44,6 @@ public class VIP : MonoBehaviour
                 Vector3 direction = (currentDest - transform.position).normalized;
                 body.velocity = direction * speed * Time.deltaTime;
             }
-<<<<<<< HEAD:Assets/_Project/Scripts/Character/VIP.cs
-        }
-    }
-
-    IEnumerator Ponder ()
-    {
-        float randWait = Random.Range (1f, 2f);
-        print (randWait);
-        yield return new WaitForSeconds (randWait);
-        currentDest = genRandomDest ();
-        state = State.Enroute;
-    }
-
-    Vector3 genRandomDest ()
-=======
         }
         if (Vector3.Distance(currentDest, target.transform.position) > maxRadius)
         {
@@ -80,26 +65,14 @@ public class VIP : MonoBehaviour
     }
 
     Vector3 genRandomDest()
->>>>>>> origin/vip:Assets/_Project/Scripts/VIP/VIP.cs
     {
         Vector3 targetPos = target.transform.position;
         float randRad = Random.Range (minRadius, maxRadius);
         float randAngle = Random.Range (0, 2 * Mathf.PI);
         // Convert to polar to cartesian coordinate
-<<<<<<< HEAD:Assets/_Project/Scripts/Character/VIP.cs
-        float x = randRad * Mathf.Cos (randAngle);
-        float y = randRad * Mathf.Sin (randAngle);
-        Vector3 dest = new Vector3 (x, y, 0);
-        return dest;
-    }
-
-}
-=======
         float x = randRad * Mathf.Cos(randAngle);
         float y = randRad * Mathf.Sin(randAngle);
         Vector3 dest = new Vector3(x, y, 0);
         return targetPos + dest;
     }
-
 }
->>>>>>> origin/vip:Assets/_Project/Scripts/VIP/VIP.cs
