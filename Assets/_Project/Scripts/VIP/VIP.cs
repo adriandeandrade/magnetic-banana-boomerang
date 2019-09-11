@@ -40,9 +40,15 @@ public class VIP : MonoBehaviour
             }
             else
             {
+                
                 Vector3 direction = (currentDest - transform.position).normalized;
                 body.velocity = direction * speed * Time.deltaTime;
             }
+        }
+        if (Vector3.Distance(currentDest, target.transform.position) > maxRadius)
+        {
+            currentDest = genRandomDest();
+            state = State.Enroute;
         }
     }
 
@@ -51,8 +57,11 @@ public class VIP : MonoBehaviour
         float randWait = Random.Range(1f, 2f);
         print(randWait);
         yield return new WaitForSeconds(randWait);
-        currentDest = genRandomDest();
-        state = State.Enroute;
+        if (state != State.Enroute)
+        {
+            currentDest = genRandomDest();
+            state = State.Enroute;
+        }
     }
 
     Vector3 genRandomDest()
@@ -64,7 +73,7 @@ public class VIP : MonoBehaviour
         float x = randRad * Mathf.Cos(randAngle);
         float y = randRad * Mathf.Sin(randAngle);
         Vector3 dest = new Vector3(x, y, 0);
-        return dest;
+        return targetPos + dest;
     }
 
 }
