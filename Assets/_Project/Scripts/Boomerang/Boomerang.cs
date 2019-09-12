@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using PathCreation;
 using MagneticBananaBoomerang.Characters;
+using System.Collections;
 
 public class Boomerang : MonoBehaviour
 {
@@ -13,13 +14,14 @@ public class Boomerang : MonoBehaviour
 	[SerializeField] private float knockbackDetectionRadius = 2f;
 
 	// Private Variables
-	private bool startMove = false;
+	private bool doMove = false;
 	private float distanceTravelled;
 	private float velocity;
 
 	// Components
 	private BoomerangManager boomerangManager;
 	private PathCreator pathCreator;
+	private GameObject interactable;
 	private EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Stop;
 	private Collider2D col;
 	private Rigidbody2D rBody;
@@ -37,16 +39,12 @@ public class Boomerang : MonoBehaviour
 		rBody = GetComponent<Rigidbody2D>();
 	}
 
-	private void Update()
-	{
-		KnockbackEnemiesInPath();
-	}
 
 	private void FixedUpdate()
 	{
 		if (pathCreator != null)
 		{
-			if (startMove)
+			if (doMove)
 			{
 				BoomerangMovement();
 			}
@@ -66,7 +64,6 @@ public class Boomerang : MonoBehaviour
 				velocity = speed;
 			}
 
-
 			distanceTravelled += velocity * Time.deltaTime;
 			rBody.MovePosition(pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction));
 		}
@@ -78,9 +75,37 @@ public class Boomerang : MonoBehaviour
 				OnReachEndOfPath();
 			}
 
-			startMove = false;
+			if (interactable != null)
+			{
+				if (interactable.GetComponent<Interactable>())
+				{
+					interactable.GetComponent<Interactable>().Interact();
+				}
+
+				if (interactable.GetComponent<BaseEnemy>())
+				{
+					interactable.GetComponent<BaseEnemy>().TakeDamage(2f, Vector2.zero);
+					interactable = null;
+				}
+			}
+
+			doMove = false;
+			StartCoroutine(MoveToPlayerOverSpeed(FindObjectOfType<Player>().transform.position, speed)); // Return to player.
 			print("Path complete");
 		}
+	}
+
+	IEnumerator MoveToPlayerOverSpeed(Vector3 endPoint, float speed)
+	{
+		Vector2 dir = (transform.position - endPoint).normalized;
+
+		while (rBody.position != (Vector2)endPoint)
+		{
+			rBody.position = Vector2.MoveTowards(rBody.position, FindObjectOfType<Player>().transform.position, speed * Time.fixedDeltaTime);
+			yield return new WaitForFixedUpdate();
+		}
+
+		yield break;
 	}
 
 	private void KnockbackEnemiesInPath()
@@ -102,11 +127,12 @@ public class Boomerang : MonoBehaviour
 		}
 	}
 
-	public void InitializeBoomerang(BoomerangManager _boomerangManager, PathCreator creator)
+	public void InitializeBoomerang(BoomerangManager _boomerangManager, PathCreator creator, GameObject _interactable = null)
 	{
 		pathCreator = creator;
 		boomerangManager = _boomerangManager;
-		startMove = true;
+		doMove = true;
+		interactable = _interactable;
 		Invoke("EnableCollider", 0.2f);
 	}
 

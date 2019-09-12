@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c1913e49ba87f4a9619f824fae8f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apexSpeed: 10
-  speed: 15
+  apexSpeed: 15
+  speed: 20
+  knockbackDetectionRadius: 2
 --- !u!61 &2599935785294279201
 BoxCollider2D:
   m_ObjectHideFlags: 0
