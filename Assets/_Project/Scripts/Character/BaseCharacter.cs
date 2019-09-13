@@ -39,7 +39,7 @@ namespace MagneticBananaBoomerang.Characters
 				return;
 			}
 
-			//knockback.ApplyKnockback(damageDirection, damageColor);
+			knockback.ApplyKnockback(damageDirection, damageColor);
 		}
 
 		public virtual void RecalculateHealth(float amount)
