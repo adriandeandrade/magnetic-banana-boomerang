@@ -36,4 +36,9 @@ public class Toolbox : MonoBehaviour
 		boomerangManager = gameObject.AddComponent<BoomerangManager>();
 		boomerangManager.Initialize();
 	}
+
+	public BoomerangManager GetBoomerangManager()
+	{
+		return boomerangManager;
+	}
 }
