@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrapActivator : Interactable
 {
-	[SerializeField] private GameObject linkedTrap;
+	[SerializeField] private Trap linkedTrap;
 
     public override void Interact()
 	{
@@ -13,7 +13,12 @@ public class TrapActivator : Interactable
 
 	public void ActivateTrap()
 	{
-		Trap trap = linkedTrap.GetComponent<Trap>();
-		trap.Activate();
+		if(linkedTrap == null)
+		{
+			Debug.LogError("No trap assigned to this activator. Please assign a trap in the linked trap field!");
+			return;
+		}
+
+		linkedTrap.Activate();
 	}
 }
