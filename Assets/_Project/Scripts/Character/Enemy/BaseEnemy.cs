@@ -6,7 +6,7 @@ using PolyNav;
 namespace MagneticBananaBoomerang.Characters
 {
 	[RequireComponent(typeof(PolyNavAgent))]
-	public class BaseEnemy : BaseCharacter
+	public abstract class BaseEnemy : BaseCharacter, IAICharacter
 	{
 		// Inspector Field
 		[Header("Enemy Settings")]
@@ -15,6 +15,8 @@ namespace MagneticBananaBoomerang.Characters
 		// Components
 		protected PolyNavAgent agent;
 		protected Player player;
+
+		public EnemyStates CurrentState { get => currentState; set => currentState = value; }
 
 		public override void Awake()
 		{
@@ -26,37 +28,39 @@ namespace MagneticBananaBoomerang.Characters
 		public override void Start()
 		{
 			base.Start();
-			SetState(EnemyStates.MOVING);
+			SetState(EnemyStates.IDLE);
 		}
 
 		public override void Update()
 		{
 			base.Update();
-			UpdateStates();
+			UpdateState();
 		}
 
-		public void SetState(EnemyStates newState)
+		
+
+		public virtual void SetState(EnemyStates newState)
 		{
 			switch (newState)
 			{
 				case EnemyStates.ATTACKING:
 					currentState = EnemyStates.ATTACKING;
-					SetIdleState();
+					InitAttackState();
 					break;
 
 				case EnemyStates.MOVING:
 					currentState = EnemyStates.MOVING;
-					SetMovingState();
+					InitMovingState();
 					break;
 
 				case EnemyStates.IDLE:
 					currentState = EnemyStates.IDLE;
-					SetIdleState();
+					InitIdleState();
 					break;
 			}
 		}
 
-		public void UpdateStates()
+		public virtual void UpdateState()
 		{
 			switch (currentState)
 			{
@@ -74,19 +78,19 @@ namespace MagneticBananaBoomerang.Characters
 			}
 		}
 
-		public virtual void SetIdleState()
+		public virtual void InitIdleState()
 		{
-
+			
 		}
 
-		public virtual void SetAttackState()
+		public virtual void InitMovingState()
 		{
-
+			
 		}
 
-		public virtual void SetMovingState()
+		public virtual void InitAttackState()
 		{
-
+			
 		}
 
 		public virtual void UpdateIdleState()
@@ -96,7 +100,7 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void UpdateMovingState()
 		{
-			if (player != null)
+			/* if (player != null)
 			{
 				Vector2 currentPosition = transform.position;
 				Vector2 directionToPlayer = player.transform.position - transform.position;
@@ -116,12 +120,12 @@ namespace MagneticBananaBoomerang.Characters
 			else
 			{
 				SetState(EnemyStates.IDLE);
-			}
+			} */
 		}
 
 		public virtual void UpdateAttackState()
 		{
-			Vector2 currentPosition = transform.position;
+			/* Vector2 currentPosition = transform.position;
 			Vector2 directionToPlayer = player.transform.position - transform.position;
 
 			float distanceSqrToTarget = directionToPlayer.sqrMagnitude;
@@ -129,8 +133,9 @@ namespace MagneticBananaBoomerang.Characters
 			if (distanceSqrToTarget > agent.stoppingDistance + 1)
 			{
 				SetState(EnemyStates.MOVING);
-			}
+			} */
 		}
+
 	}
 }
 

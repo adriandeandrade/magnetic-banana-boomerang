@@ -51,7 +51,7 @@ public class BoomerangManager : BaseManager
 			{
 				currentBoomerangInstance = Instantiate(boomerangPrefab, player.transform.position, Quaternion.identity).GetComponent<Boomerang>();
 				currentBoomerangInstance.InitializeBoomerang(this, objectUnderMouse.transform.position, objectUnderMouse);
-				print("Object found.");
+				print("Object found. Interacting...");
 			}
 			else
 			{
