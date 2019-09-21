@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MagneticBananaBoomerang.Characters
 {
-    [RequireComponent(typeof(Knockback))]
+	[RequireComponent(typeof(Knockback))]
 	public abstract class BaseCharacter : BaseCharacterMovement, IDamageable
 	{
 		// Inspector Fields
@@ -15,19 +15,20 @@ namespace MagneticBananaBoomerang.Characters
 		protected float currentHealth;
 
 		// Components
-        [HideInInspector]
+		[HideInInspector]
 		public Knockback knockback;
 
-        public override void Awake()
-        {
-            base.Awake();
-            knockback = GetComponent<Knockback>();
-        }
+		public override void Awake()
+		{
+			base.Awake();
+			knockback = GetComponent<Knockback>();
+		}
 
 		public virtual void Start()
 		{
-            currentHealth = characterData.maxHealth;
+			currentHealth = characterData.maxHealth;
 		}
+
 
 		public void TakeDamage(float amount, Vector2 damageDirection)
 		{

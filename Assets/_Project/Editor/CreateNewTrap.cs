@@ -10,7 +10,6 @@ public enum TrapType
 
 public class CreateNewTrap : EditorWindow
 {
-	private static string assetFilePath = "Assets/_Project/Traps/Data";
 	private TrapType trapType;
 
 	private GameObject knockbackTrapPrefab;
@@ -56,7 +55,7 @@ public class CreateNewTrap : EditorWindow
 				break;
 			case TrapType.SPIKE:
 				Object newSpikeTrap = PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/Traps/SpikeTrap"));
-				newSpikeTrap.name = "New Knockback Trap";
+				newSpikeTrap.name = "New Spike Trap";
 				break;
 		}
 

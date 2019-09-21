@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2455228611323347944}
   - component: {fileID: 2455228611323347959}
   - component: {fileID: 2455228611323347958}
-  - component: {fileID: 2455228611323347957}
   - component: {fileID: 2455228611323347946}
   - component: {fileID: 2455228611323347947}
   - component: {fileID: 2455228611323347948}
+  - component: {fileID: 7669789376558637045}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -126,23 +126,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2455228611323347957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2455228611323347956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0b3c7782db9ca4b8d41038730974c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  knockback: {fileID: 0}
-  currentState: 0
 --- !u!61 &2455228611323347946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197,13 +180,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _map: {fileID: 0}
   maxSpeed: 1
-  mass: 20
+  mass: 1
   stoppingDistance: 1
   slowingDistance: 1
   accelerationRate: 2
   decelerationRate: 2
   lookAheadDistance: 1
-  avoidRadius: 1
+  avoidRadius: 0.5
   avoidanceConsiderStuckedTime: 3
   avoidanceConsiderReachedDistance: 1
   rotateTransform: 0
@@ -213,3 +196,28 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
+--- !u!114 &7669789376558637045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455228611323347956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c8d5f46473fad4da121d994805262e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  knockback: {fileID: 0}
+  currentState: 0
+  minShootDistance: 2
+  maxShootDistance: 5
+  rangedEnemyCharacterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed,
+    type: 2}
+  targets:
+  - {fileID: 0}
+  - {fileID: 0}
+  currentTarget: {fileID: 0}

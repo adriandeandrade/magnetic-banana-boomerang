@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 8724242662877344947}
   - component: {fileID: 8724242662877344944}
   - component: {fileID: 8724242662877344945}
+  - component: {fileID: 219344108}
+  - component: {fileID: 219344104}
+  - component: {fileID: 219344105}
   m_Layer: 0
   m_Name: VIP
-  m_TagString: Untagged
+  m_TagString: VIP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,11 +97,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406e8c9fbb4fda54ea76193f769318c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  knockback: {fileID: 0}
+  currentState: 0
+  catchUpDelay: 2
+  maxRadiusFromTarget: 3.42
+  minRadiusFromTarget: 2.5
   target: {fileID: 0}
-  maxRadius: 2
-  minRadius: 1
-  speed: 5
-  currentDest: {x: 0, y: 0, z: 0}
 --- !u!50 &8724242662877344945
 Rigidbody2D:
   serializedVersion: 4
@@ -112,11 +119,71 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &219344108
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724242662877344972}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!114 &219344104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724242662877344972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 3.5
+  mass: 20
+  stoppingDistance: 3
+  slowingDistance: 2
+  accelerationRate: 2
+  decelerationRate: 2
+  lookAheadDistance: 1
+  avoidRadius: 1
+  avoidanceConsiderStuckedTime: 3
+  avoidanceConsiderReachedDistance: 1
+  rotateTransform: 0
+  rotateSpeed: 350
+  centerOffset: {x: 0, y: 0}
+  repath: 1
+  restrict: 0
+  closerPointOnInvalid: 1
+  debugPath: 1
+--- !u!114 &219344105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724242662877344972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936f8986c0636bb41a781debda2a7985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackAmount: 20
+  knockbackTime: 0.5

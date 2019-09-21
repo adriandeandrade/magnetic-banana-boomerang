@@ -3,31 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using MagneticBananaBoomerang.Characters;
 
+[RequireComponent(typeof(Knockback))]
 public class KnockbackTrap : Trap
 {
 	public override void Activate()
 	{
 		InitializeTimer();
-		spriteRenderer.color = activatedColor;
+
+		if (spriteRenderer != null)
+		{
+			spriteRenderer.color = activatedColor;
+		}
+
 		ApplyKnockback();
 	}
 
 	public override void Deactivate()
 	{
 		active = false;
-		spriteRenderer.color = originalColor;
+		if (spriteRenderer != null)
+		{
+			spriteRenderer.color = originalColor;
+		}
 	}
 
 	private void ApplyKnockback()
 	{
-		List<BaseEnemy> detectedEnemies = DetectEnemiesWithinRadius(transform, range);
+		List<GameObject> otherObjects = DetectObjectsWithinRadius(transform, range);
 
-		if (detectedEnemies.Count > 0)
+		if (otherObjects.Count > 0)
 		{
-			foreach (BaseEnemy enemy in detectedEnemies)
-			{   
-				Vector2 dir = enemy.transform.position - transform.position;
-				enemy.knockback.ApplyKnockback(dir, Color.red);
+			foreach (GameObject otherObject in otherObjects)
+			{
+				Vector2 dir = otherObject.transform.position - transform.position;
+				BaseCharacter knockbackable = otherObject.GetComponent<BaseCharacter>();
+
+				if (knockbackable != null)
+				{
+					Debug.Log("Tried to knocback: " + otherObject.name);
+					knockbackable.knockback.ApplyKnockback(dir, Color.red);
+				}
 			}
 		}
 	}

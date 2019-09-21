@@ -6,7 +6,7 @@ using PolyNav;
 namespace MagneticBananaBoomerang.Characters
 {
 	[RequireComponent(typeof(PolyNavAgent))]
-	public abstract class BaseEnemy : BaseCharacter, IAICharacter
+	public class BaseEnemy : BaseCharacter, IAICharacter
 	{
 		// Inspector Field
 		[Header("Enemy Settings")]
@@ -28,7 +28,7 @@ namespace MagneticBananaBoomerang.Characters
 		public override void Start()
 		{
 			base.Start();
-			SetState(EnemyStates.IDLE);
+			//SetState(EnemyStates.IDLE);
 		}
 
 		public override void Update()
@@ -36,8 +36,6 @@ namespace MagneticBananaBoomerang.Characters
 			base.Update();
 			UpdateState();
 		}
-
-		
 
 		public virtual void SetState(EnemyStates newState)
 		{
@@ -100,7 +98,7 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void UpdateMovingState()
 		{
-			/* if (player != null)
+			if (player != null)
 			{
 				Vector2 currentPosition = transform.position;
 				Vector2 directionToPlayer = player.transform.position - transform.position;
@@ -120,12 +118,12 @@ namespace MagneticBananaBoomerang.Characters
 			else
 			{
 				SetState(EnemyStates.IDLE);
-			} */
+			}
 		}
 
 		public virtual void UpdateAttackState()
 		{
-			/* Vector2 currentPosition = transform.position;
+			Vector2 currentPosition = transform.position;
 			Vector2 directionToPlayer = player.transform.position - transform.position;
 
 			float distanceSqrToTarget = directionToPlayer.sqrMagnitude;
@@ -133,7 +131,7 @@ namespace MagneticBananaBoomerang.Characters
 			if (distanceSqrToTarget > agent.stoppingDistance + 1)
 			{
 				SetState(EnemyStates.MOVING);
-			} */
+			}
 		}
 
 	}

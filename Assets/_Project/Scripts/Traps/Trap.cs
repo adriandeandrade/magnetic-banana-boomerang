@@ -12,6 +12,8 @@ public abstract class Trap : MonoBehaviour
 	[SerializeField] protected float activeTime;
 	[Tooltip("How far the trap will detect enemies.")]
 	[SerializeField] protected float range = 2f;
+	[Tooltip("Select the layers that should be detected by the trap.")]
+	[SerializeField] protected LayerMask detectionLayer;
 
 	// Private Variables
 	protected Color originalColor;
@@ -60,24 +62,22 @@ public abstract class Trap : MonoBehaviour
 	/// <summary> 
 	/// This method will return a list of enemies detected within a certain radius.
 	/// </summary>
-	protected List<BaseEnemy> DetectEnemiesWithinRadius(Transform centerPoint, float detectionRadius)
+	protected List<GameObject> DetectObjectsWithinRadius(Transform centerPoint, float detectionRadius)
 	{
-		Collider2D[] cols = Physics2D.OverlapCircleAll(centerPoint.position, detectionRadius);
-		List<BaseEnemy> enemies = new List<BaseEnemy>();
+		Collider2D[] cols = Physics2D.OverlapCircleAll(centerPoint.position, detectionRadius, detectionLayer);
+		List<GameObject> otherObjects = new List<GameObject>();
 
 		if (cols.Length > 0)
 		{
 			foreach (Collider2D col in cols)
 			{
-				BaseEnemy enemy = col.GetComponent<BaseEnemy>();
-
-				if (enemy != null)
+				if (col.gameObject != null)
 				{
-					enemies.Add(enemy);
+					otherObjects.Add(col.gameObject);
 				}
 			}
 		}
 
-		return enemies; // Return empty list.
+		return otherObjects; // Return empty list.
 	}
 }

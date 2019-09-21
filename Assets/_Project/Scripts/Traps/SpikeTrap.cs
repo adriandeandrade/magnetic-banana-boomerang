@@ -6,16 +6,16 @@ using MagneticBananaBoomerang.Characters;
 public class SpikeTrap : Trap
 {
 	// Inspector Fields
-    [Tooltip("Object which holds the spikes graphics.")]
+	[Tooltip("Object which holds the spikes graphics.")]
 	[SerializeField] private GameObject spikeSprites;
-    [Tooltip("The amount of damage the spikes will deal.")]
-    [SerializeField] private float spikeDamageAmount;
+	[Tooltip("The amount of damage the spikes will deal.")]
+	[SerializeField] private float spikeDamageAmount;
 
 	public override void Activate()
 	{
 		InitializeTimer();
-        spikeSprites.SetActive(true);
-        ApplyDamage();
+		spikeSprites.SetActive(true);
+		ApplyDamage();
 	}
 
 	public override void Deactivate()
@@ -24,16 +24,21 @@ public class SpikeTrap : Trap
 		spikeSprites.SetActive(false);
 	}
 
-    private void ApplyDamage()
+	private void ApplyDamage()
 	{
-		List<BaseEnemy> detectedEnemies = DetectEnemiesWithinRadius(transform, range);
+		List<GameObject> otherObjects = DetectObjectsWithinRadius(transform, range);
 
-		if (detectedEnemies.Count > 0)
+		if (otherObjects.Count > 0)
 		{
-			foreach (BaseEnemy enemy in detectedEnemies)
-			{   
-				Vector2 dir = enemy.transform.position - transform.position;
-                enemy.GetComponent<IDamageable>().TakeDamage(spikeDamageAmount, dir);
+			foreach (GameObject otherObject in otherObjects)
+			{
+				Vector2 dir = otherObject.transform.position - transform.position;
+				IDamageable damageable = otherObject.GetComponent<IDamageable>();
+
+				if (damageable != null)
+				{
+					damageable.TakeDamage(spikeDamageAmount, dir);
+				}
 			}
 		}
 	}
