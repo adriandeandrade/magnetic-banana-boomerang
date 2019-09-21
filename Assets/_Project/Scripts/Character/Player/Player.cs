@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MagneticBananaBoomerang.Characters;
 
-public class Player : BaseCharacterMovement
+public class Player : BaseCharacter
 {
 	public override void Update()
 	{
@@ -23,7 +23,10 @@ public class Player : BaseCharacterMovement
 
 		base.Update();
 
-		Move(vel);
+		if (!knockback.IsKnockback)
+		{
+			Move(vel);
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)

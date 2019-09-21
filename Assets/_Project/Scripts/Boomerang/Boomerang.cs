@@ -3,6 +3,7 @@ using PathCreation;
 using MagneticBananaBoomerang.Characters;
 using System.Collections;
 using System.Collections.Generic;
+using PolyNav;
 
 public class Boomerang : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class Boomerang : MonoBehaviour
 	private GameObject detectedObjectInstance; // Gets set when a new boomerang is spawned and initialized with data from BoomerangManager.
 
 	// Components
-	private EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Stop;
 	private BoomerangManager boomerangManager;
 	private Player player;
 	private Collider2D col;
@@ -27,6 +27,9 @@ public class Boomerang : MonoBehaviour
 
 	public delegate void OnPickedUpAction();
 	public static event OnPickedUpAction OnPickedUp;
+
+	public delegate void OnHitEnemyAction();
+	public static event OnHitEnemyAction OnHitEnemy;
 
 	private void Awake()
 	{
@@ -74,9 +77,17 @@ public class Boomerang : MonoBehaviour
 
 			if (_enemy != null)
 			{
+				//_enemy.GetComponent<PolyNavAgent>().enabled = false;
+
 				Vector2 direction = transform.position - detectedObjectInstance.transform.position;
 				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(2f, direction);
 				detectedObjectInstance = null;
+
+				if(OnHitEnemy != null)
+				{
+					OnHitEnemy.Invoke();
+				}
+
 			}
 		}
 

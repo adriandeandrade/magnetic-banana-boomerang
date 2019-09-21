@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PolyNav;
 using UnityEngine;
 
 public class Knockback : MonoBehaviour
@@ -14,20 +15,24 @@ public class Knockback : MonoBehaviour
 	private Vector2 knockbackDirection;
 	private float knockbackCounter;
 	private bool knockbackTimerStart = false;
+	private bool isKnockback;
 	private bool doKnockback;
 
 	// Componenents
 	private Rigidbody2D rBody;
 	private SpriteRenderer spriteRenderer;
+	private Color originalColor;
 
 	public float KnockbackCounter => knockbackCounter;
 	public float KnockbackAmount { get { return knockbackAmount; } set { knockbackAmount = value; } }
 	public float KnockbackTime { get { return knockbackTime; } set { knockbackTime = value; } }
+	public bool IsKnockback { get => isKnockback; }
 
 	private void Awake()
 	{
 		rBody = GetComponent<Rigidbody2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		originalColor = spriteRenderer.color;
 	}
 
 
@@ -36,13 +41,16 @@ public class Knockback : MonoBehaviour
 		if (knockbackCounter > 0 && knockbackTimerStart)
 		{
 			knockbackCounter -= Time.deltaTime;
+			isKnockback = true;
 		}
 		else if (knockbackCounter <= 0 && knockbackTimerStart)
 		{
 			knockbackTimerStart = false;
-			spriteRenderer.color = Color.white;
+			isKnockback = false;
+			spriteRenderer.color = originalColor;
 		}
 	}
+
 
 	private void FixedUpdate()
 	{
