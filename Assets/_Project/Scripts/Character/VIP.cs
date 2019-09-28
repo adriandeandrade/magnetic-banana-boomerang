@@ -30,25 +30,27 @@ public class VIP : BaseEnemy
 
 	public override void UpdateState()
 	{
-		base.UpdateState();
+		/* base.UpdateState();
 
 		if (TooFarAwayFromTarget())
 		{
 			Debug.Log("TOO FAR");
 		}
+
+		StayAwayFromEnemies(); */
 	}
 
-	public override void InitIdleState()
+	public override void InitIdle()
 	{
 		currentCatchUpDelay = catchUpDelay;
 	}
 
-	public override void InitMovingState()
+	public override void InitMoving()
 	{
 
 	}
 
-	public override void UpdateIdleState()
+	public override void Idle()
 	{
 		if (TooFarAwayFromTarget())
 		{
@@ -64,7 +66,7 @@ public class VIP : BaseEnemy
 		}
 	}
 
-	public override void UpdateMovingState()
+	public override void Moving()
 	{
 		if (HasReachedDestination())
 		{
@@ -72,7 +74,7 @@ public class VIP : BaseEnemy
 		}
 	}
 
-	public override void UpdateAttackState(){ }
+	public override void Interacting() { }
 
 	public bool HasReachedDestination()
 	{
@@ -115,6 +117,30 @@ public class VIP : BaseEnemy
 		Vector3 dest = new Vector3(x, y, 0);
 
 		return targetPos + dest;
+	}
+
+	private void StayAwayFromEnemies()
+	{
+		/* BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
+		GameObject[] gameObjects = new GameObject[999999];
+
+		if (enemies.Length > 0)
+		{
+			for (int i = 0; i < enemies.Length; i++)
+			{
+				gameObjects[i] = enemies[i].gameObject;
+			}
+
+			GameObject closestEnemy = GameUtilities.FindClosestGameObject(gameObjects, transform.position);
+
+			float distance = Vector2.Distance(transform.position, closestEnemy.transform.position);
+
+			if (distance < maxRadiusFromTarget)
+			{
+				Vector2 direction = transform.position - closestEnemy.transform.position;
+				transform.Translate(direction.normalized * 10);
+			}
+		} */
 	}
 
 	private void OnDrawGizmos()

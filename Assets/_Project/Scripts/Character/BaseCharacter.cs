@@ -48,6 +48,11 @@ namespace MagneticBananaBoomerang.Characters
 			currentHealth -= amount;
 			// Update UI here
 		}
+
+		public virtual void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
+		{
+			
+		}
 	}
 }
 

@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8724242662877344946}
   - component: {fileID: 8724242662877344947}
-  - component: {fileID: 8724242662877344944}
   - component: {fileID: 8724242662877344945}
   - component: {fileID: 219344108}
   - component: {fileID: 219344104}
   - component: {fileID: 219344105}
+  - component: {fileID: 1444637226}
+  - component: {fileID: 1444637225}
   m_Layer: 0
   m_Name: VIP
   m_TagString: VIP
@@ -85,27 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8724242662877344944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8724242662877344972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406e8c9fbb4fda54ea76193f769318c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  knockback: {fileID: 0}
-  currentState: 0
-  catchUpDelay: 2
-  maxRadiusFromTarget: 3.42
-  minRadiusFromTarget: 2.5
-  target: {fileID: 0}
 --- !u!50 &8724242662877344945
 Rigidbody2D:
   serializedVersion: 4
@@ -187,3 +167,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackAmount: 20
   knockbackTime: 0.5
+--- !u!95 &1444637226
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724242662877344972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1444637225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724242662877344972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369b2921a1c167d4288c2a0c1a0031fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  knockback: {fileID: 0}

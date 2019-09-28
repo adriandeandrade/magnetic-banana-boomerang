@@ -23,20 +23,18 @@ public class RangedEnemy : BaseEnemy
 
 	// Private Variables
 	private bool canShoot;
-	private bool useNearestAsTarget = true;
+	private bool useNearestAsTarget = false;
 	private float currentFireDelay;
 	private float currentFireRateTime;
 
 	private void OnEnable()
 	{
-        Boomerang.OnHitEnemy += SwitchTargetToPlayer; 
+        Boomerang.OnHitEnemy += SwitchTargetToPlayer;
 	}
 
-	public override void Awake()
+	private void OnDisable()
 	{
-		base.Awake();
-		targets[0] = GameObject.FindGameObjectWithTag("Player");
-		targets[1] = GameObject.FindGameObjectWithTag("VIP");
+		Boomerang.OnHitEnemy -= SwitchTargetToPlayer; 
 	}
 
 	public override void Start()
@@ -63,11 +61,12 @@ public class RangedEnemy : BaseEnemy
 
 		if (useNearestAsTarget)
 		{
+			if(currentState == EnemyStates.INTERACTING) return;
 			SetTarget();
 		}
 	}
 
-	public override void InitIdleState()
+	public override void InitIdle()
 	{
 		if (currentTarget != null)
 		{
@@ -75,24 +74,25 @@ public class RangedEnemy : BaseEnemy
 		}
 	}
 
-	public override void InitMovingState()
+	public override void InitMoving()
 	{
-		agent.SetDestination(currentTarget.transform.position);
+		ExecuteMove(currentTarget.transform.position);
 	}
 
-	public override void InitAttackState()
+	public override void InitInteracting()
 	{
 		//currentFireDelay = rangedEnemyCharacterData.fireDelay;
+		agent.Stop();
 	}
 
-	public override void UpdateIdleState()
+	public override void Idle()
 	{
 
 	}
 
-	public override void UpdateMovingState()
+	public override void Moving()
 	{
-		if (HasReachedDestination())
+		/* if (HasReachedDestination())
 		{
 			if (GetDistanceToTarget() <= agent.stoppingDistance + minShootDistance)
 			{
@@ -101,11 +101,11 @@ public class RangedEnemy : BaseEnemy
 		}
 		else
 		{
-			agent.SetDestination(currentTarget.position);
-		}
+			ExecuteMove(currentTarget.position);
+		} */
 	}
 
-	public override void UpdateAttackState()
+	public override void Interacting()
 	{
 		if (GetDistanceToTarget() >= agent.stoppingDistance + maxShootDistance)
 		{
@@ -130,14 +130,14 @@ public class RangedEnemy : BaseEnemy
 		return Vector3.Distance(currentTarget.position, transform.position) + agent.stoppingDistance;
 	}
 
-	private GameObject GetClosestTarget()
+	/* private GameObject GetClosestTarget()
 	{
 		return GameUtilities.FindClosestGameObject(targets, transform.position);
-	}
+	} */
 
 	private void SetTarget()
 	{
-		currentTarget = GetClosestTarget().transform;
+		//currentTarget = GetClosestTarget().transform;
 	}
 
     private void SwitchTargetToPlayer()
@@ -146,18 +146,9 @@ public class RangedEnemy : BaseEnemy
         currentTarget = FindObjectOfType<Player>().transform;
     }
 
-	private bool HasReachedDestination()
+	public override void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
 	{
-		if (!agent.pathPending)
-		{
-			if (agent.remainingDistance <= agent.stoppingDistance)
-			{
-				if (!agent.hasPath)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
+		agent.Stop();
+		base.TakeDamage(amount, damageDirection, damageSender);
 	}
 }

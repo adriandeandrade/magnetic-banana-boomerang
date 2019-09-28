@@ -80,7 +80,7 @@ public class Boomerang : MonoBehaviour
 				//_enemy.GetComponent<PolyNavAgent>().enabled = false;
 
 				Vector2 direction = transform.position - detectedObjectInstance.transform.position;
-				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(2f, direction);
+				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(2f, direction, player);
 				detectedObjectInstance = null;
 
 				if(OnHitEnemy != null)

@@ -2,5 +2,5 @@
 {
     IDLE,
     MOVING,
-    ATTACKING
+    INTERACTING
 }

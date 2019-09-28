@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 internal class GameUtilities
 {
-	public static GameObject FindClosestGameObject(GameObject[] gameObjects, Vector2 currentPosition)
+	public static GameObject FindClosestGameObject(List<GameObject> gameObjects, Vector2 currentPosition)
 	{
 		GameObject closest = null;
 		float distance = Mathf.Infinity;

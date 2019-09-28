@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2455228611323347946}
   - component: {fileID: 2455228611323347947}
   - component: {fileID: 2455228611323347948}
-  - component: {fileID: 7669789376558637045}
+  - component: {fileID: 6419555457492428588}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -186,7 +186,7 @@ MonoBehaviour:
   accelerationRate: 2
   decelerationRate: 2
   lookAheadDistance: 1
-  avoidRadius: 0.5
+  avoidRadius: 3
   avoidanceConsiderStuckedTime: 3
   avoidanceConsiderReachedDistance: 1
   rotateTransform: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!114 &7669789376558637045
+--- !u!114 &6419555457492428588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,19 +205,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2455228611323347956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c8d5f46473fad4da121d994805262e, type: 3}
+  m_Script: {fileID: 11500000, guid: e8e4020a889e55e429b5d0f7435aeb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
+  characterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed, type: 2}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   knockback: {fileID: 0}
+  requireTarget: 1
+  useAI: 1
+  maxDetectionDistance: 0
   currentState: 0
-  minShootDistance: 2
-  maxShootDistance: 5
+  targets: []
+  minAttackDistance: 2
+  maxAttackDistance: 5
   rangedEnemyCharacterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed,
     type: 2}
-  targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  currentTarget: {fileID: 0}
