@@ -30,7 +30,7 @@ namespace MagneticBananaBoomerang.Characters
 		}
 
 
-		public void TakeDamage(float amount, Vector2 damageDirection)
+		public virtual void TakeDamage(float amount, Vector2 damageDirection)
 		{
 			RecalculateHealth(amount);
 

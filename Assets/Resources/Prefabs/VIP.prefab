@@ -202,3 +202,9 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 61cc7cb9da54311459d3785941a02a79, type: 2}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   knockback: {fileID: 0}
+  currentState: 0
+  fleeThreshold: 2
+  fleeDestinationRadius: 10
+  dodgeRadius: 15
+  dodgeCooldown: 1.5
+  fleeCooldown: 0

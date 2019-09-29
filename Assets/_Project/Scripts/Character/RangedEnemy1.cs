@@ -22,6 +22,7 @@ public class RangedEnemy1 : BaseEnemy
 	// Components 
 
 	// Events
+	public event System.Action OnShoot;
 
 	public override void Start()
 	{
@@ -87,12 +88,16 @@ public class RangedEnemy1 : BaseEnemy
 	{
 		GameObject projectile = Instantiate(rangedEnemyCharacterData.projectilePrefab, transform.position, Quaternion.identity);
 		projectile.GetComponent<BaseProjectile>().ShootProjectile(target.position, 10f);
+
+		if(OnShoot != null)
+		{
+			OnShoot.Invoke();
+		}
 	}
 
 	private IEnumerator Shoot()
 	{
 		isShooting = true;
-		Debug.Log("Shooting...");
 
 		while (doShooting)
 		{

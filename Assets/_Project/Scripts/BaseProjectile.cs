@@ -50,24 +50,20 @@ public class BaseProjectile : MonoBehaviour
 			yield return new WaitForFixedUpdate();
 		}
 
-		Debug.Log("Path ended");
 		rBody.AddForce(-dir * 2f, ForceMode2D.Impulse);
-		
+
 		yield break;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
-		{
-			BaseCharacter _characterHit = other.GetComponent<BaseCharacter>();
+		BaseCharacter _characterHit = other.GetComponent<BaseCharacter>();
 
-			if (_characterHit != null)
-			{
-				Vector2 direction = _characterHit.transform.position - transform.position;
-				_characterHit.GetComponent<BaseCharacter>().TakeDamage(0f, direction);
-				Destroy(gameObject);
-			}
+		if (_characterHit != null && !_characterHit.GetComponent<BaseEnemy>())
+		{
+			Vector2 direction = _characterHit.transform.position - transform.position;
+			_characterHit.GetComponent<BaseCharacter>().TakeDamage(0f, direction);
+			Destroy(gameObject);
 		}
 	}
 

@@ -30,6 +30,8 @@ namespace MagneticBananaBoomerang.Characters
 		protected PolyNavAgent agent;
 		protected Player player;
 
+		// Events
+
 		public EnemyStates CurrentState { get => currentState; set => currentState = value; }
 
 		private void OnEnable()
@@ -217,7 +219,6 @@ namespace MagneticBananaBoomerang.Characters
 		protected void GetTargets()
 		{
 			List<BaseCharacter> baseCharacters = new List<BaseCharacter>(FindObjectsOfType<BaseCharacter>());
-			Debug.Log(baseCharacters.Count);
 
 			foreach (BaseCharacter character in baseCharacters)
 			{
