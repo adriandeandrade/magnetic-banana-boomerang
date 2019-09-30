@@ -32,7 +32,6 @@ public class DirectionalArrowToTarget : MonoBehaviour
         {
             arrowUI.SetActive(false);
         }
-
 	}
 
 	private bool CheckIfWithinBounds()
@@ -51,7 +50,7 @@ public class DirectionalArrowToTarget : MonoBehaviour
 
 		aimAngle = Mathf.Atan2(arrowPos.y, arrowPos.x) * Mathf.Rad2Deg;
 
-		arrowPos = Quaternion.AngleAxis(aimAngle, Vector3.forward) * (Vector2.right * 1.2f);
+		arrowPos = Quaternion.AngleAxis(aimAngle, Vector3.forward) * (Vector2.right * 3f);
 		arrowUI.transform.position = startPoint + arrowPos;
 		arrowUI.transform.rotation = Quaternion.AngleAxis(aimAngle, Vector3.forward);
 	}

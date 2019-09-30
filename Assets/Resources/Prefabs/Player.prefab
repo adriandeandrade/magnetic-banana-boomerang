@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1642214516}
   - component: {fileID: 1642214515}
   m_Layer: 0
-  m_Name: Boomerang
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
