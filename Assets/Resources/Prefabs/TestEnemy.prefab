@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2455228611323347958}
   - component: {fileID: 2455228611323347946}
   - component: {fileID: 2455228611323347947}
-  - component: {fileID: 2455228611323347948}
   - component: {fileID: 6419555457492428588}
-  m_Layer: 0
+  - component: {fileID: 2455228611323347948}
+  m_Layer: 11
   m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: de037c42c55277a4ab973b99b157df7b, type: 3}
-  m_Color: {r: 0.12300205, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: dbe86808ccc6ba540b3b8462929f2676, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &2455228611323347958
 Animator:
   serializedVersion: 3
@@ -117,7 +117,7 @@ Animator:
   m_GameObject: {fileID: 2455228611323347956}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 38a774bd316808a47b7862297f245b30, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,7 +143,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.25, y: 0.92}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -166,6 +166,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackAmount: 20
   knockbackTime: 0.5
+--- !u!114 &6419555457492428588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455228611323347956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e4020a889e55e429b5d0f7435aeb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  characterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed, type: 2}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  healthbar: {fileID: 0}
+  knockback: {fileID: 0}
+  requireTarget: 1
+  useAI: 1
+  maxDetectionDistance: 0
+  currentState: 0
+  targets: []
+  minAttackDistance: 2
+  maxAttackDistance: 4
+  rangedEnemyCharacterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed,
+    type: 2}
 --- !u!114 &2455228611323347948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,28 +222,3 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!114 &6419555457492428588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2455228611323347956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e4020a889e55e429b5d0f7435aeb88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  characterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed, type: 2}
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  knockback: {fileID: 0}
-  requireTarget: 1
-  useAI: 1
-  maxDetectionDistance: 0
-  currentState: 0
-  targets: []
-  minAttackDistance: 2
-  maxAttackDistance: 4
-  rangedEnemyCharacterData: {fileID: 11400000, guid: cba45a5d01ffb2249ab8ad33ba8ebaed,
-    type: 2}

@@ -61,16 +61,16 @@ namespace MagneticBananaBoomerang.Characters
 
 		public override void Update()
 		{
-			base.Update();
+			UpdateAnimator();
 
-			if(!requireTarget) return;
+			if (!requireTarget) return;
 
-			if(targets == null || targets.Count == 0)
+			if (targets == null || targets.Count == 0)
 			{
 				Debug.LogError("Targets cannot be found. Please make sure the enemy has targets it can track.");
 				return;
 			}
-			
+
 
 			CalculateLastKnowPosition();
 			CalculateDirectionToTarget();
@@ -85,6 +85,32 @@ namespace MagneticBananaBoomerang.Characters
 
 			SetTarget();
 			UpdateState();
+
+			base.Update();
+
+
+		}
+
+		public override void UpdateAnimator()
+		{
+			animator.SetFloat("Horizontal", Mathf.RoundToInt(agent.velocity.x));
+			animator.SetFloat("Vertical", Mathf.RoundToInt(agent.velocity.y));
+			animator.SetFloat("Speed", agent.currentSpeed);
+			animator.SetFloat("FacingDirection", facingDirection);
+		}
+
+		public override void GetFacingDirection()
+		{
+			if (agent.velocity.normalized == Vector2.zero) return; // If we are standing still return so we idle in the last direction moved.
+
+			if (agent.velocity.normalized == new Vector2(0, -1)) facingDirection = 0f;
+			if (agent.velocity.normalized == new Vector2(-1, 1)) facingDirection = 1f;
+			if (agent.velocity.normalized == new Vector2(-1, -1)) facingDirection = 2f;
+			if (agent.velocity.normalized == new Vector2(1, 0)) facingDirection = 3f;
+			if (agent.velocity.normalized == new Vector2(-1, 0)) facingDirection = 4f;
+			if (agent.velocity.normalized == Vector2.one) facingDirection = 5f;
+			if (agent.velocity.normalized == new Vector2(1, -1)) facingDirection = 6f;
+			if (agent.velocity.normalized == new Vector2(0, 1)) facingDirection = 7f;
 		}
 
 		public virtual void SetState(EnemyStates newState)
@@ -170,7 +196,7 @@ namespace MagneticBananaBoomerang.Characters
 		{
 			agent.Stop();
 
-			if(distanceToTarget <= maxDetectionDistance)
+			if (distanceToTarget <= maxDetectionDistance)
 			{
 				SetState(EnemyStates.INTERACTING);
 			}

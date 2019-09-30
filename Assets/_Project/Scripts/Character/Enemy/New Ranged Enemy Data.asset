@@ -20,5 +20,5 @@ MonoBehaviour:
   projectileSpeed: 275
   fireRate: 1.5
   fireDelay: 1
-  accuracy: 1
+  accuracy: 0.08
   damageAmount: 1

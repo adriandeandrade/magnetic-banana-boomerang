@@ -44,22 +44,14 @@ public class BaseProjectile : MonoBehaviour
 
 	IEnumerator MoveToPointOverSpeed(Vector3 endPoint, float _speed, float accuracy)
 	{
-		Vector2 dir = (transform.position - endPoint).normalized;
+		Vector2 dir = (endPoint - transform.position).normalized;
 
 		dir.x += Random.Range(-accuracy, accuracy);
 		dir.y += Random.Range(-accuracy, accuracy);
 
-		while (rBody.position != dir)
-		{
-			rBody.velocity = -dir * _speed * Time.fixedDeltaTime;
-
-			//rBody.position = Vector2.MoveTowards(rBody.position, endPoint, _speed * Time.fixedDeltaTime);
-			yield return new WaitForFixedUpdate();
-		}
-
-		//rBody.AddForce(-dir * 2f, ForceMode2D.Impulse);
-
-		Destroy(gameObject);
+		rBody.velocity = dir * _speed * Time.fixedDeltaTime;
+		//rBody.position = Vector2.MoveTowards(rBody.position, endPoint, _speed * Time.fixedDeltaTime);
+		yield return new WaitForFixedUpdate();
 
 		yield break;
 	}

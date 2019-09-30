@@ -26,6 +26,11 @@ namespace MagneticBananaBoomerang.Characters
 			knockback = GetComponent<Knockback>();
 		}
 
+		public override void Update()
+		{
+			base.Update();
+		}
+
 		public virtual void Start()
 		{
 			currentHealth = characterData.maxHealth;
@@ -49,7 +54,7 @@ namespace MagneticBananaBoomerang.Characters
 		{
 			currentHealth -= amount;
 
-			if(healthbar != null)
+			if (healthbar != null)
 			{
 				healthbar.fillAmount = currentHealth / characterData.maxHealth;
 			}
@@ -57,7 +62,7 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
 		{
-			
+
 		}
 	}
 }

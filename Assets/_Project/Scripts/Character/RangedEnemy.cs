@@ -30,11 +30,6 @@ public class RangedEnemy : BaseEnemy
 		SetState(EnemyStates.IDLE);
 	}
 
-	public override void Update()
-	{
-		base.Update();
-	}
-
 	public override void InitIdle()
 	{
 
@@ -89,7 +84,7 @@ public class RangedEnemy : BaseEnemy
 		GameObject projectile = Instantiate(rangedEnemyCharacterData.projectilePrefab, transform.position, Quaternion.identity);
 		projectile.GetComponent<BaseProjectile>().ShootProjectile(target.position, rangedEnemyCharacterData.projectileSpeed, rangedEnemyCharacterData.damageAmount, rangedEnemyCharacterData.accuracy);
 
-		if(OnShoot != null)
+		if (OnShoot != null)
 		{
 			OnShoot.Invoke();
 		}
