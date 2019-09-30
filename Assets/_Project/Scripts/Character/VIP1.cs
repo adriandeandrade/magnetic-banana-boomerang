@@ -52,6 +52,8 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	public override void Update()
 	{
+		UpdateAnimator();
+
 		base.Update();
 
 		UpdateState();
@@ -227,6 +229,28 @@ public class VIP1 : BaseCharacter, IAICharacter
 		isFleeing = false;
 		yield break;
 	}
+
+	public override void UpdateAnimator()
+		{
+			animator.SetFloat("Horizontal", Mathf.RoundToInt(agent.velocity.x));
+			animator.SetFloat("Vertical", Mathf.RoundToInt(agent.velocity.y));
+			animator.SetFloat("Speed", agent.currentSpeed);
+			animator.SetFloat("FacingDirection", facingDirection);
+		}
+
+		public override void GetFacingDirection()
+		{
+			if (agent.velocity.normalized == Vector2.zero) return; // If we are standing still return so we idle in the last direction moved.
+
+			if (agent.velocity.normalized == new Vector2(0, -1)) facingDirection = 0f;
+			if (agent.velocity.normalized == new Vector2(-1, 1)) facingDirection = 1f;
+			if (agent.velocity.normalized == new Vector2(-1, -1)) facingDirection = 2f;
+			if (agent.velocity.normalized == new Vector2(1, 0)) facingDirection = 3f;
+			if (agent.velocity.normalized == new Vector2(-1, 0)) facingDirection = 4f;
+			if (agent.velocity.normalized == Vector2.one) facingDirection = 5f;
+			if (agent.velocity.normalized == new Vector2(1, -1)) facingDirection = 6f;
+			if (agent.velocity.normalized == new Vector2(0, 1)) facingDirection = 7f;
+		}
 }
 
 

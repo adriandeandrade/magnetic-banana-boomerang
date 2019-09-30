@@ -15,6 +15,7 @@ namespace MagneticBananaBoomerang.Characters
 		[SerializeField] protected float maxDetectionDistance;
 		[SerializeField] protected EnemyStates currentState;
 		[SerializeField] protected List<GameObject> targets = new List<GameObject>();
+		[SerializeField] protected LayerMask lineOfSightFilter;
 
 		// Private Variables
 		protected Transform target;

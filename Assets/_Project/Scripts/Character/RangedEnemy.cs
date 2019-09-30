@@ -14,6 +14,7 @@ public class RangedEnemy : BaseEnemy
 	// Private Variables
 	private bool isShooting = false;
 	private bool doShooting = false;
+	private bool canSeeTarget;
 	private float currentFireDelay;
 	private float currentFireRateTime;
 
@@ -28,6 +29,24 @@ public class RangedEnemy : BaseEnemy
 	{
 		base.Start();
 		SetState(EnemyStates.IDLE);
+	}
+
+	public override void Update()
+	{
+		base.Update();
+
+		RaycastHit2D hit2D = Physics2D.Raycast(transform.position, target.position);
+
+		if (hit2D)
+		{
+			canSeeTarget = true;
+			Debug.Log("Can see target");
+		}
+		else
+		{
+			canSeeTarget = false;
+			Debug.Log("Can not see target");
+		}
 	}
 
 	public override void InitIdle()
@@ -71,6 +90,7 @@ public class RangedEnemy : BaseEnemy
 		{
 			doShooting = true;
 			StartCoroutine(Shoot());
+
 		}
 
 		if (distanceToTarget > maxAttackDistance * maxAttackDistance)
@@ -96,7 +116,10 @@ public class RangedEnemy : BaseEnemy
 
 		while (doShooting)
 		{
-			ShootProjectile();
+			if (canSeeTarget)
+			{
+				ShootProjectile();
+			}
 			yield return new WaitForSeconds(rangedEnemyCharacterData.fireRate);
 		}
 

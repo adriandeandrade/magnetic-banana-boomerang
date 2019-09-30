@@ -32,6 +32,11 @@ public class WaveSpawner : MonoBehaviour
         }
 	}
 
+	public void StartWave()
+	{
+		StartCoroutine(SpawnWave());
+	}
+
 	IEnumerator SpawnWave()
 	{
 		Wave wave = waves[waveIndex];

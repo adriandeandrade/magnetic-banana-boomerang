@@ -68,6 +68,14 @@ public class BaseProjectile : MonoBehaviour
 		}
 	}
 
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+		{
+			Destroy(gameObject);
+		}
+	}
+
 	private void OnDrawGizmos()
 	{
 		Gizmos.DrawWireSphere(transform.position, projectileRadius);
