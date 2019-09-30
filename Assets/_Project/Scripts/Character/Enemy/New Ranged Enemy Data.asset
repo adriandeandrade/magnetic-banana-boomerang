@@ -17,5 +17,8 @@ MonoBehaviour:
   maxHealth: 10
   projectilePrefab: {fileID: 2695238922596024063, guid: 44fddb2670d8bfd46add9a8ecac9ab5d,
     type: 3}
-  fireRate: 1
-  fireDelay: 0
+  projectileSpeed: 275
+  fireRate: 1.5
+  fireDelay: 1
+  accuracy: 0.08
+  damageAmount: 1

@@ -11,6 +11,7 @@ public class BaseProjectile : MonoBehaviour
 
 	// Private Variables
 	private float currentProjectileLifetime;
+	private float damageAmount;
 
 	// Components
 	private Rigidbody2D rBody;
@@ -35,39 +36,43 @@ public class BaseProjectile : MonoBehaviour
 		currentProjectileLifetime -= Time.deltaTime;
 	}
 
-	public void ShootProjectile(Vector3 endPoint, float _speed)
+	public void ShootProjectile(Vector3 endPoint, float _speed, float _damageAmount, float accuracy)
 	{
-		StartCoroutine(MoveToPointOverSpeed(endPoint, _speed));
+		StartCoroutine(MoveToPointOverSpeed(endPoint, _speed, accuracy));
+		damageAmount = _damageAmount;
 	}
 
-	IEnumerator MoveToPointOverSpeed(Vector3 endPoint, float _speed)
+	IEnumerator MoveToPointOverSpeed(Vector3 endPoint, float _speed, float accuracy)
 	{
-		Vector2 dir = (transform.position - endPoint).normalized;
+		Vector2 dir = (endPoint - transform.position).normalized;
 
-		while (rBody.position != (Vector2)endPoint)
-		{
-			rBody.position = Vector2.MoveTowards(rBody.position, endPoint, _speed * Time.fixedDeltaTime);
-			yield return new WaitForFixedUpdate();
-		}
+		dir.x += Random.Range(-accuracy, accuracy);
+		dir.y += Random.Range(-accuracy, accuracy);
 
-		Debug.Log("Path ended");
-		rBody.AddForce(-dir * 2f, ForceMode2D.Impulse);
-		
+		rBody.velocity = dir * _speed * Time.fixedDeltaTime;
+		//rBody.position = Vector2.MoveTowards(rBody.position, endPoint, _speed * Time.fixedDeltaTime);
+		yield return new WaitForFixedUpdate();
+
 		yield break;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
-		{
-			BaseCharacter _characterHit = other.GetComponent<BaseCharacter>();
+		BaseCharacter _characterHit = other.GetComponent<BaseCharacter>();
 
-			if (_characterHit != null)
-			{
-				Vector2 direction = _characterHit.transform.position - transform.position;
-				_characterHit.GetComponent<BaseCharacter>().TakeDamage(0f, direction);
-				Destroy(gameObject);
-			}
+		if (_characterHit != null && !_characterHit.GetComponent<BaseEnemy>())
+		{
+			Vector2 direction = _characterHit.transform.position - transform.position;
+			_characterHit.GetComponent<BaseCharacter>().TakeDamage(damageAmount, direction);
+			Destroy(gameObject);
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+		{
+			Destroy(gameObject);
 		}
 	}
 

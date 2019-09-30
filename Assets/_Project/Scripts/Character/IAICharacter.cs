@@ -4,12 +4,12 @@
     void SetState(EnemyStates newState);
     void UpdateState();
 
-    void InitIdleState();
-    void UpdateIdleState();
+    void InitIdle();
+    void Idle();
 
-    void InitMovingState();
-    void UpdateMovingState();
+    void InitMoving();
+    void Moving();
 
-    void InitAttackState();
-    void UpdateAttackState();
+    void InitInteracting();
+    void Interacting();
 }

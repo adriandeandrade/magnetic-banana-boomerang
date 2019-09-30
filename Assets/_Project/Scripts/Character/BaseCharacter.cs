@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MagneticBananaBoomerang.Characters
 {
@@ -10,6 +11,7 @@ namespace MagneticBananaBoomerang.Characters
 		// Inspector Fields
 		[SerializeField] protected BaseCharacterData characterData;
 		[SerializeField] protected Color damageColor = Color.red;
+		[SerializeField] private Image healthbar;
 
 		// Private Fields
 		protected float currentHealth;
@@ -24,13 +26,18 @@ namespace MagneticBananaBoomerang.Characters
 			knockback = GetComponent<Knockback>();
 		}
 
+		public override void Update()
+		{
+			base.Update();
+		}
+
 		public virtual void Start()
 		{
 			currentHealth = characterData.maxHealth;
 		}
 
 
-		public void TakeDamage(float amount, Vector2 damageDirection)
+		public virtual void TakeDamage(float amount, Vector2 damageDirection)
 		{
 			RecalculateHealth(amount);
 
@@ -46,7 +53,16 @@ namespace MagneticBananaBoomerang.Characters
 		public virtual void RecalculateHealth(float amount)
 		{
 			currentHealth -= amount;
-			// Update UI here
+
+			if (healthbar != null)
+			{
+				healthbar.fillAmount = currentHealth / characterData.maxHealth;
+			}
+		}
+
+		public virtual void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
+		{
+
 		}
 	}
 }
