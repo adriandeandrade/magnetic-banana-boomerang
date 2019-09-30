@@ -6,6 +6,9 @@ using UnityEngine;
 public class RangedEnemyCharacterData : BaseCharacterData
 {
     public GameObject projectilePrefab;
+    public float projectileSpeed;
     public float fireRate;
     public float fireDelay;
+    public float accuracy;
+    public float damageAmount = 1f;
 }

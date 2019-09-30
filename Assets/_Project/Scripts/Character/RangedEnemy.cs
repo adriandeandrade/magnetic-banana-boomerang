@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MagneticBananaBoomerang.Characters;
 
-public class RangedEnemy1 : BaseEnemy
+public class RangedEnemy : BaseEnemy
 {
 	// Inspector Field
 	[Header("Ranged Enemy Configuration")]
@@ -87,7 +87,7 @@ public class RangedEnemy1 : BaseEnemy
 	private void ShootProjectile()
 	{
 		GameObject projectile = Instantiate(rangedEnemyCharacterData.projectilePrefab, transform.position, Quaternion.identity);
-		projectile.GetComponent<BaseProjectile>().ShootProjectile(target.position, 10f);
+		projectile.GetComponent<BaseProjectile>().ShootProjectile(target.position, rangedEnemyCharacterData.projectileSpeed, rangedEnemyCharacterData.damageAmount, rangedEnemyCharacterData.accuracy);
 
 		if(OnShoot != null)
 		{

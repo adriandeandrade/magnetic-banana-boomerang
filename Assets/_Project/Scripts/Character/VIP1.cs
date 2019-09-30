@@ -16,7 +16,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	// Private variables
 	//private Transform dodgeTarget; // The target which the vip will focus dodging incoming projectiles from.
-	private RangedEnemy1 dodgeTarget;
+	private RangedEnemy dodgeTarget;
 	private bool isFleeing = false;
 	private bool isDodging = false;
 	private float currentDodgeTime;
@@ -160,7 +160,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 	{
 		if (enemies.Count > 0 && enemies != null)
 		{
-			dodgeTarget = enemies[0].GetComponent<RangedEnemy1>();
+			dodgeTarget = enemies[0].GetComponent<RangedEnemy>();
 
 			if (dodgeTarget)
 			{
@@ -176,11 +176,8 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	private void SetTarget()
 	{
-		if (enemies.Count > 0 && enemies != null)
-		{
-			dodgeTarget = enemies[0].GetComponent<RangedEnemy1>();
-			dodgeTarget.OnShoot += Dodge;
-		}
+		RangedEnemy[] es = FindObjectsOfType<RangedEnemy>();
+		enemies.AddRange(es);
 	}
 
 	private void Flee()
