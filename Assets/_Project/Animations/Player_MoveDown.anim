@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_MoveUp
+  m_Name: Player_MoveDown
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.034, y: -0.028, z: 0}
+        value: {x: -0.02, y: -0.028, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -29,7 +29,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.25
-        value: {x: 0.034, y: 0.114, z: 0}
+        value: {x: -0.02, y: 0.064, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -38,7 +38,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.41666666
-        value: {x: 0.034, y: -0.061, z: 0}
+        value: {x: -0.02, y: -0.086, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -48,7 +48,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Bananarang Up
+    path: Bananarang Down
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
@@ -67,47 +67,28 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Bananarang Down
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
     path: Bananarang Up
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 5915541880102334956, guid: f6ef1cf3b9a04c444ba1770d964ae950,
+      value: {fileID: 2337615997792102974, guid: 2bf4f2b651b22f545bba1a4d9065ce50,
         type: 3}
     - time: 0.083333336
-      value: {fileID: 5794884133113739057, guid: f6ef1cf3b9a04c444ba1770d964ae950,
+      value: {fileID: 6125266552272570553, guid: 2bf4f2b651b22f545bba1a4d9065ce50,
         type: 3}
     - time: 0.16666667
-      value: {fileID: -6984328211845860387, guid: f6ef1cf3b9a04c444ba1770d964ae950,
+      value: {fileID: -2979267876400602492, guid: 2bf4f2b651b22f545bba1a4d9065ce50,
         type: 3}
     - time: 0.25
-      value: {fileID: -5862705064963300538, guid: f6ef1cf3b9a04c444ba1770d964ae950,
+      value: {fileID: 6049918492151497010, guid: 2bf4f2b651b22f545bba1a4d9065ce50,
         type: 3}
     - time: 0.33333334
-      value: {fileID: -5718426479487558066, guid: f6ef1cf3b9a04c444ba1770d964ae950,
+      value: {fileID: 639899660952149075, guid: 2bf4f2b651b22f545bba1a4d9065ce50,
         type: 3}
     - time: 0.41666666
-      value: {fileID: -1977762485807865075, guid: f6ef1cf3b9a04c444ba1770d964ae950,
+      value: {fileID: -4102573190552923550, guid: 2bf4f2b651b22f545bba1a4d9065ce50,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -121,17 +102,10 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1109258176
+      path: 2403143580
       attribute: 1
       script: {fileID: 0}
       typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2403143580
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
@@ -149,12 +123,12 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 5915541880102334956, guid: f6ef1cf3b9a04c444ba1770d964ae950, type: 3}
-    - {fileID: 5794884133113739057, guid: f6ef1cf3b9a04c444ba1770d964ae950, type: 3}
-    - {fileID: -6984328211845860387, guid: f6ef1cf3b9a04c444ba1770d964ae950, type: 3}
-    - {fileID: -5862705064963300538, guid: f6ef1cf3b9a04c444ba1770d964ae950, type: 3}
-    - {fileID: -5718426479487558066, guid: f6ef1cf3b9a04c444ba1770d964ae950, type: 3}
-    - {fileID: -1977762485807865075, guid: f6ef1cf3b9a04c444ba1770d964ae950, type: 3}
+    - {fileID: 2337615997792102974, guid: 2bf4f2b651b22f545bba1a4d9065ce50, type: 3}
+    - {fileID: 6125266552272570553, guid: 2bf4f2b651b22f545bba1a4d9065ce50, type: 3}
+    - {fileID: -2979267876400602492, guid: 2bf4f2b651b22f545bba1a4d9065ce50, type: 3}
+    - {fileID: 6049918492151497010, guid: 2bf4f2b651b22f545bba1a4d9065ce50, type: 3}
+    - {fileID: 639899660952149075, guid: 2bf4f2b651b22f545bba1a4d9065ce50, type: 3}
+    - {fileID: -4102573190552923550, guid: 2bf4f2b651b22f545bba1a4d9065ce50, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -181,7 +155,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.034
+        value: -0.02
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -190,7 +164,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 0.034
+        value: -0.02
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -199,7 +173,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.41666666
-        value: 0.034
+        value: -0.02
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -210,7 +184,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Bananarang Up
+    path: Bananarang Down
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -227,7 +201,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 0.114
+        value: 0.064
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -236,7 +210,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.41666666
-        value: -0.061
+        value: -0.086
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -247,7 +221,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Bananarang Up
+    path: Bananarang Down
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -284,7 +258,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Bananarang Up
+    path: Bananarang Down
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -293,25 +267,6 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Bananarang Down
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
