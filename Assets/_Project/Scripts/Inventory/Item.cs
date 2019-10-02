@@ -8,4 +8,5 @@ public class Item : ScriptableObject
     public string itemName;
     public int minStackAmount;
     public GameObject itemPrefab;
+    public ItemTypes itemType;
 }

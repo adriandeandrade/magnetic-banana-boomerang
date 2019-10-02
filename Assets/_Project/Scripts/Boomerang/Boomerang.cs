@@ -11,6 +11,7 @@ public class Boomerang : MonoBehaviour
 	[Header("Boomerang Configuration")]
 	[Tooltip("The speed at which the boomerang travels.")]
 	[SerializeField] private float speed = 10f;
+	[SerializeField] private Stat boomerangStat;
 
 	// Private Variables
 	private GameObject detectedObjectInstance; // Gets set when a new boomerang is spawned and initialized with data from BoomerangManager.
@@ -35,7 +36,7 @@ public class Boomerang : MonoBehaviour
 	{
 		col = GetComponent<Collider2D>();
 		rBody = GetComponent<Rigidbody2D>();
-		player = FindObjectOfType<Player>();
+		player = Toolbox.instance.GetGameManager().PlayerRef;
 	}
 
 	public void InitializeBoomerang(BoomerangManager _boomerangManager, Vector2 targetDestinationPoint, GameObject _detectedObjectInstance = null)
@@ -80,7 +81,7 @@ public class Boomerang : MonoBehaviour
 				//_enemy.GetComponent<PolyNavAgent>().enabled = false;
 
 				Vector2 direction = transform.position - detectedObjectInstance.transform.position;
-				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(2f, direction, player);
+				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(player.PlayerStats.GetStatValue(boomerangStat), direction, player);
 				detectedObjectInstance = null;
 
 				if(OnHitEnemy != null)

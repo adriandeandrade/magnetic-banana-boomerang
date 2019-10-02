@@ -10,6 +10,7 @@ public class Player : BaseCharacter
 
 	// Private Variables
 	private Inventory inventory;
+	private StatManager statManager;
 
 	// Properties;
 	public Inventory PlayerInventory
@@ -28,10 +29,27 @@ public class Player : BaseCharacter
 		}
 	}
 
+	public StatManager PlayerStats
+	{
+		get
+		{
+			if(statManager != null)
+			{
+				return statManager;
+			}
+			else
+			{
+				statManager = GetComponent<StatManager>();
+				return statManager;
+			}
+		}
+	}
+
 	public override void Awake()
 	{
 		base.Awake();
 		inventory = GetComponent<Inventory>();
+		statManager = GetComponent<StatManager>();
 	}
 
 	public override void Update()
@@ -73,5 +91,10 @@ public class Player : BaseCharacter
 
 			print("Triggered boomerang.");
 		}
+	}
+
+	public PlayerData GetPlayerData()
+	{
+		return playerData;
 	}
 }

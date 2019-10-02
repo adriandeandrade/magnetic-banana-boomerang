@@ -24,6 +24,14 @@ public class StatManager : MonoBehaviour
 		player = Toolbox.instance.GetGameManager().PlayerRef;
 	}
 
+	private void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Tab))
+		{
+			statsUI.OpenUpgradeMenu();
+		}
+	}
+
 	private void InitializeStats()
 	{
 		if (startingStats != null && startingStats.Count > 0)
@@ -59,6 +67,11 @@ public class StatManager : MonoBehaviour
 				player.PlayerInventory.RemoveSkillPoint(statToUpgrade.upgradeCost);
 			}
 		}
+	}
+
+	public float GetStatValue(Stat statToGet)
+	{
+		return stats[statToGet];
 	}
 
 	private bool CheckIfStatExists(Stat statToCheck)

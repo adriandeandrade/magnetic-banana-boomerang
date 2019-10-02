@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eed7359427b5834aa076cde24f8eb09, type: 3}
   m_Name: SkillPointItem
   m_EditorClassIdentifier: 
+  itemName: 
+  minStackAmount: 0
   itemPrefab: {fileID: 2334339994639710297, guid: fab517c61cf12fa44915710a7430bead,
     type: 3}
+  itemType: 1

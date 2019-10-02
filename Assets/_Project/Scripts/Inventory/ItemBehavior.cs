@@ -64,9 +64,15 @@ public class ItemBehavior : MonoBehaviour
 
 	public virtual void OnItemReachDestination()
 	{
-		// TODO: Add pick up delay so we dont pickup items right as they spawn.
+		if (itemData.itemType == ItemTypes.Skillpoint)
+		{
+			player.PlayerInventory.AddSkillPoint(1);
+		}
+		else
+		{
+			player.PlayerInventory.AddItem(itemData, 1);
+		}
 
-		player.PlayerInventory.AddSkillPoint(1);
 		Destroy(gameObject);
 	}
 }

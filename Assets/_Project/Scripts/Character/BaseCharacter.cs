@@ -74,6 +74,16 @@ namespace MagneticBananaBoomerang.Characters
 			}
 		}
 
+		public float GetCurrentHealth()
+		{
+			return currentHealth;
+		}
+
+		public float GetMaxHealth()
+		{
+			return characterData.health.statBaseValue;
+		}
+
 		public virtual void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
 		{
 
