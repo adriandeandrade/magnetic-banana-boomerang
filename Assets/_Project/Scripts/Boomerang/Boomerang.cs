@@ -75,6 +75,7 @@ public class Boomerang : MonoBehaviour
 			}
 
 			BaseEnemy _enemy = detectedObjectInstance.GetComponent<BaseEnemy>();
+			VIP1 vip = detectedObjectInstance.GetComponent<VIP1>();
 
 			if (_enemy != null)
 			{
@@ -84,12 +85,18 @@ public class Boomerang : MonoBehaviour
 				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(player.PlayerStats.GetStatValue(boomerangStat), direction, player);
 				detectedObjectInstance = null;
 
-				if(OnHitEnemy != null)
+				if (OnHitEnemy != null)
 				{
 					OnHitEnemy.Invoke();
 				}
 
 			}
+			else if (vip != null)
+			{
+				vip.ApplyKnockback();
+				detectedObjectInstance = null;
+			}
+
 		}
 
 		yield return StartCoroutine(MoveToPlayerOverSpeed()); // Return to player.

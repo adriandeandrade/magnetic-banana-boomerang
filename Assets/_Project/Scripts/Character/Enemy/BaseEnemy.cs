@@ -208,6 +208,7 @@ namespace MagneticBananaBoomerang.Characters
 		public override void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
 		{
 			base.TakeDamage(amount, damageDirection);
+			FloatingTextController.CreateFloatingText(amount.ToString(), transform);
 		}
 
 		public override void OnDeath()

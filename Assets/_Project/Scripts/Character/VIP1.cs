@@ -9,9 +9,11 @@ public class VIP1 : BaseCharacter, IAICharacter
 	// Inspector Field
 	[SerializeField] private EnemyStates currentState;
 	[SerializeField] private float fleeThreshold; // The closest an enemy can be before the turtle flees.
-	[SerializeField] private float fleeDestinationRadius; // The radius that the 
+	[SerializeField] private float fleeDestinationRadius;
+	[SerializeField] private float knockbackRange;
 	[SerializeField] private float dodgeRadius;
 	[SerializeField] private float dodgeCooldown;
+	[SerializeField] private float outOfRangeMoveCooldown;
 	[SerializeField] private float fleeCooldown;
 
 	// Private variables
@@ -21,10 +23,13 @@ public class VIP1 : BaseCharacter, IAICharacter
 	private bool isDodging = false;
 	private float currentDodgeTime;
 	private float currentFleeTime;
+	private float currentOutOfRangeTime;
 	private List<BaseEnemy> enemies = new List<BaseEnemy>();
 
 	// Components
 	private PolyNavAgent agent;
+	private Camera cam;
+	private Player player;
 
 	// Properties
 	public EnemyStates CurrentState { get => currentState; set => currentState = value; }
@@ -43,11 +48,13 @@ public class VIP1 : BaseCharacter, IAICharacter
 	{
 		base.Awake();
 		agent = GetComponent<PolyNavAgent>();
+		cam = Camera.main;
 	}
 
 	public override void Start()
 	{
 		base.Start();
+		player = Toolbox.instance.GetGameManager().PlayerRef;
 	}
 
 	public override void Update()
@@ -104,7 +111,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	public void InitIdle()
 	{
-
+		currentOutOfRangeTime = outOfRangeMoveCooldown;
 	}
 
 
@@ -120,7 +127,18 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	public void Idle()
 	{
-
+		if(!CheckIfWithinRange())
+		{
+			if(currentOutOfRangeTime <= 0)
+			{
+				// Move back to player.
+				GetRandomPointAroundPlayer();
+			}
+			else
+			{
+				currentOutOfRangeTime -= Time.deltaTime;
+			}
+		}
 	}
 
 	public void Moving()
@@ -176,6 +194,45 @@ public class VIP1 : BaseCharacter, IAICharacter
 		}
 	}
 
+	public void ApplyKnockback()
+	{
+		List<GameObject> otherObjects = DetectObjectsWithinRadius(transform, knockbackRange);
+
+		if (otherObjects.Count > 0)
+		{
+			foreach (GameObject otherObject in otherObjects)
+			{
+				Vector2 dir = otherObject.transform.position - transform.position;
+				BaseCharacter knockbackable = otherObject.GetComponent<BaseCharacter>();
+
+				if (knockbackable != null)
+				{
+					Debug.Log("Tried to knocback: " + otherObject.name);
+					knockbackable.knockback.ApplyKnockback(dir, Color.red);
+				}
+			}
+		}
+	}
+
+	protected List<GameObject> DetectObjectsWithinRadius(Transform centerPoint, float detectionRadius)
+	{
+		Collider2D[] cols = Physics2D.OverlapCircleAll(centerPoint.position, detectionRadius);
+		List<GameObject> otherObjects = new List<GameObject>();
+
+		if (cols.Length > 0)
+		{
+			foreach (Collider2D col in cols)
+			{
+				if (col.gameObject != null && col != this)
+				{
+					otherObjects.Add(col.gameObject);
+				}
+			}
+		}
+
+		return otherObjects; // Return empty list.
+	}
+
 	private void SetTarget()
 	{
 		RangedEnemy[] es = FindObjectsOfType<RangedEnemy>();
@@ -192,6 +249,21 @@ public class VIP1 : BaseCharacter, IAICharacter
 			agent.SetDestination(randomPos);
 			SetState(EnemyStates.MOVING);
 		}
+	}
+
+	private void GetRandomPointAroundPlayer()
+	{
+		Vector2 newPosition = Random.insideUnitCircle * 3f + (Vector2)player.transform.position;
+		agent.SetDestination(newPosition);
+		SetState(EnemyStates.MOVING);
+	}
+
+	private bool CheckIfWithinRange()
+	{
+		Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
+
+		bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+		return onScreen;
 	}
 
 	private void OnDestinationReached()
@@ -252,99 +324,3 @@ public class VIP1 : BaseCharacter, IAICharacter
 		if (agent.velocity.normalized == new Vector2(0, 1)) facingDirection = 7f;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* public GameObject target;
-public float maxRadius;
-public float minRadius;
-public float speed;
-
-public Vector3 currentDest;
-
-enum State
-{
-None,
-Enroute,
-Ponder
-}
-private State state;
-Rigidbody2D body;
-// Start is called before the first frame update
-void Start ()
-{
-body = GetComponent<Rigidbody2D> ();
-state = State.None;
-StartCoroutine ("Ponder");
-}
-
-// Update is called once per frame
-void Update ()
-{
-if (state == State.Enroute)
-{
-	if (Vector3.Distance (transform.position, currentDest) < 0.3)
-	{
-		state = State.Ponder;
-		body.velocity = Vector3.zero;
-		StartCoroutine ("Ponder");
-	}
-	else
-	{
-
-		Vector3 direction = (currentDest - transform.position).normalized;
-		body.velocity = direction * speed * Time.deltaTime;
-	}
-}
-if (Vector3.Distance(currentDest, target.transform.position) > maxRadius)
-{
-	currentDest = genRandomDest();
-	state = State.Enroute;
-}
-}
-
-IEnumerator Ponder()
-{
-float randWait = Random.Range(1f, 2f);
-print(randWait);
-yield return new WaitForSeconds(randWait);
-if (state != State.Enroute)
-{
-	currentDest = genRandomDest();
-	state = State.Enroute;
-}
-}
-
-Vector3 genRandomDest()
-{
-Vector3 targetPos = target.transform.position;
-float randRad = Random.Range (minRadius, maxRadius);
-float randAngle = Random.Range (0, 2 * Mathf.PI);
-// Convert to polar to cartesian coordinate
-float x = randRad * Mathf.Cos(randAngle);
-float y = randRad * Mathf.Sin(randAngle);
-Vector3 dest = new Vector3(x, y, 0);
-return targetPos + dest;
-} */
-
