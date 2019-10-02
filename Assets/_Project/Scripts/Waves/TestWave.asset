@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypes:
   - {fileID: 2455228611323347956, guid: 82a5c5028ee94c4448f7ce804adae0ed, type: 3}
-  numberOfEnemiesToSpawn: 5
+  numberOfEnemiesToSpawn: 3
   timeBetweenSpawns: 1

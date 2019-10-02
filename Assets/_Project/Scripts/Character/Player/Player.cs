@@ -5,10 +5,45 @@ using MagneticBananaBoomerang.Characters;
 
 public class Player : BaseCharacter
 {
+	// Inspector Fields
+	[SerializeField] private PlayerData playerData;
+
+	// Private Variables
+	private Inventory inventory;
+
+	// Properties;
+	public Inventory PlayerInventory
+	{
+		get
+		{
+			if (inventory != null)
+			{
+				return inventory;
+			}
+			else
+			{
+				inventory = GetComponent<Inventory>();
+				return inventory;
+			}
+		}
+	}
+
+	public override void Awake()
+	{
+		base.Awake();
+		inventory = GetComponent<Inventory>();
+	}
+
 	public override void Update()
 	{
 		HandleMovement();
 		base.Update();
+
+		// Debug: TODO: Remove this!
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			TakeDamage(5f, Vector2.zero);
+		}
 	}
 
 	private void HandleMovement()

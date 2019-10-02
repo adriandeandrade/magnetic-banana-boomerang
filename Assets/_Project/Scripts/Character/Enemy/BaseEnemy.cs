@@ -211,6 +211,12 @@ namespace MagneticBananaBoomerang.Characters
 			Debug.Log("Damage Sender: " + damageSender.name);
 		}
 
+		public override void OnDeath()
+		{
+			base.OnDeath();
+			Toolbox.instance.GetGameManager().WaveSpawnerInstance.AddEnemyKilled();
+		}
+
 		private bool CanSeeTarget()
 		{
 			RaycastHit2D hit2D = Physics2D.Linecast(transform.position, target.position);

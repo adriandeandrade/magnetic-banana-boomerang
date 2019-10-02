@@ -18,7 +18,7 @@ public class BoomerangManager : BaseManager
 
 	public override void Initialize()
 	{
-		GameObject boomerangResource = Resources.Load("Prefabs/Boomerang") as GameObject;
+		GameObject boomerangResource = Resources.Load("Boomerang") as GameObject;
 		boomerangPrefab = boomerangResource;
 	}
 

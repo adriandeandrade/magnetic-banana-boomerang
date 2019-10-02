@@ -29,6 +29,10 @@ public class Toolbox : MonoBehaviour
 	private void Awake()
 	{
 		InitializeSingleton();
+
+		gameManager = GetComponent<GameManager>();
+		gameManager.Initialize();
+
 		AddManagers();
 	}
 
@@ -36,9 +40,6 @@ public class Toolbox : MonoBehaviour
 	{
 		boomerangManager = gameObject.AddComponent<BoomerangManager>();
 		boomerangManager.Initialize();
-
-		gameManager = gameObject.AddComponent<GameManager>();
-		gameManager.Initialize();
 	}
 
 	public BoomerangManager GetBoomerangManager()
