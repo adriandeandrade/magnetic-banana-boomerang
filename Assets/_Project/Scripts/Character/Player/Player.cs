@@ -89,7 +89,7 @@ public class Player : BaseCharacter
 			Boomerang boomerang = other.GetComponent<Boomerang>();
 			boomerang.Pickup();
 
-			print("Triggered boomerang.");
+			//print("Triggered boomerang.");
 		}
 	}
 

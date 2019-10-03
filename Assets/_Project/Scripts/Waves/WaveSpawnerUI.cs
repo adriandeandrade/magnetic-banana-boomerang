@@ -9,41 +9,44 @@ public class WaveSpawnerUI : MonoBehaviour
 	// Inspector Fields
 	[SerializeField] private GameObject waveSpawnerUI;
 	[SerializeField] private TextMeshProUGUI countdownText;
+	[SerializeField] private Animator animator;
 
-    // Private Variables
+	// Components
+	private WaveSpawner waveSpawner;
 
-    // Components
-    private WaveSpawner waveSpawner;
-
-	private void Awake()
+	public void SetCountdownText(float text)
 	{
-        waveSpawner = GetComponent<WaveSpawner>();
-
-        if(waveSpawnerUI != null)
-        {
-            ToggleWaveSpawnerUI(false);
-        }
-        else
-        {
-            Debug.LogError("Wave Spawner UI Panel not referenced. Please assign a Wave Spawner UI Panel.");
-        }
+		countdownText.SetText(text.ToString("f0"));
 	}
 
-	private void Update()
+	public void SetCountdownText(string text)
 	{
-
+		countdownText.SetText(text);
 	}
 
-    public void SetCountdownText(float text)
-    {
-        countdownText.SetText(text.ToString("f0"));
-    }
-
-	public void ToggleWaveSpawnerUI(bool showState)
+	public float ShowWaveSpawnerUI()
 	{
 		if (waveSpawnerUI != null)
 		{
-			waveSpawnerUI.SetActive(showState);
+			waveSpawnerUI.SetActive(true);
+			AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+
+			if (clipInfo.Length > 0 && clipInfo != null)
+			{
+				return clipInfo[0].clip.length;
+			}
 		}
+
+		return 0;
+	}
+
+	public void HideWaveSpawnerUI()
+	{
+		animator.Play("wavespawnerui-hide");
+	}
+
+	public void HideUI() // Called by animation event.
+	{
+		waveSpawnerUI.SetActive(false);
 	}
 }

@@ -57,11 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94a8469aa052f8409c34636d8981bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownPanel: {fileID: 0}
-  countDownText: {fileID: 0}
-  waveSpawner: {fileID: 0}
   gameStartTime: 5
-  timer: {fileID: 1499879448}
+  waveSpawnerUI: {fileID: 0}
 --- !u!114 &1499879448
 MonoBehaviour:
   m_ObjectHideFlags: 0

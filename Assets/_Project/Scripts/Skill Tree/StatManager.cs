@@ -41,7 +41,7 @@ public class StatManager : MonoBehaviour
 				if (!stats.ContainsKey(stat))
 				{
 					stats.Add(stat, stat.statBaseValue);
-					Debug.Log("Added: " + stat.statName + " to stat dictionary.");
+					//Debug.Log("Added: " + stat.statName + " to stat dictionary.");
 				}
 				else
 				{
