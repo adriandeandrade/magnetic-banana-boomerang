@@ -75,7 +75,7 @@ public class Boomerang : MonoBehaviour
 			}
 
 			BaseEnemy _enemy = detectedObjectInstance.GetComponent<BaseEnemy>();
-			VIP1 vip = detectedObjectInstance.GetComponent<VIP1>();
+			LittleTurtle littleTurtle = detectedObjectInstance.GetComponent<LittleTurtle>();
 
 			if (_enemy != null)
 			{
@@ -91,9 +91,9 @@ public class Boomerang : MonoBehaviour
 				}
 
 			}
-			else if (vip != null)
+			else if (littleTurtle != null)
 			{
-				vip.ApplyKnockback();
+				littleTurtle.ApplyKnockback();
 				detectedObjectInstance = null;
 			}
 

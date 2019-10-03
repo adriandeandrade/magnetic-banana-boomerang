@@ -789,14 +789,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1444637225, guid: 2087edad55dade349b6805e692d93c4b, type: 3}
-      propertyPath: knockbackRange
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444637225, guid: 2087edad55dade349b6805e692d93c4b, type: 3}
-      propertyPath: outOfRangeMoveCooldown
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2087edad55dade349b6805e692d93c4b, type: 3}
 --- !u!1 &1189587767
@@ -1178,7 +1170,7 @@ RectTransform:
   m_Children:
   - {fileID: 1189587768}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1329,7 +1321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829839411
 GameObject:
@@ -1590,7 +1582,7 @@ PrefabInstance:
     - target: {fileID: 1997471741165056541, guid: 56b0d63b06a72f34b9ed65205e15b48f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1997471741165056541, guid: 56b0d63b06a72f34b9ed65205e15b48f,
         type: 3}
@@ -1849,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: 6262493397402723743, guid: 117bc9b85ac2cf24a8722eff37cc6b02,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6262493397402723743, guid: 117bc9b85ac2cf24a8722eff37cc6b02,
         type: 3}
@@ -1939,25 +1931,5 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1558835136}
-    - target: {fileID: 7585897871379286092, guid: 254db4cda61cd464bbb3c1a213020eaf,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7585897871379286092, guid: 254db4cda61cd464bbb3c1a213020eaf,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7585897871379286092, guid: 254db4cda61cd464bbb3c1a213020eaf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567847069933794886, guid: 254db4cda61cd464bbb3c1a213020eaf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254db4cda61cd464bbb3c1a213020eaf, type: 3}

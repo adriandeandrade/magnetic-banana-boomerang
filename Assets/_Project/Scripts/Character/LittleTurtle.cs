@@ -4,27 +4,25 @@ using MagneticBananaBoomerang.Characters;
 using UnityEngine;
 using PolyNav;
 
-public class VIP1 : BaseCharacter, IAICharacter
+public class LittleTurtle : BaseCharacter, IAICharacter
 {
 	// Inspector Field
-	[SerializeField] private EnemyStates currentState;
-	[SerializeField] private float fleeThreshold; // The closest an enemy can be before the turtle flees.
-	[SerializeField] private float fleeDestinationRadius;
-	[SerializeField] private float knockbackRange;
-	[SerializeField] private float dodgeRadius;
-	[SerializeField] private float dodgeCooldown;
-	[SerializeField] private float outOfRangeMoveCooldown;
-	[SerializeField] private float fleeCooldown;
+	[Header("Little Turtle Settings")]
+	[SerializeField] private float fleeThreshold; // How close an enemy can be before the vip starts moving away.
+	[SerializeField] private float fleeDestinationSearchRadius; // The radius of the circle which the vip will pick a point within when it flees.
+	[SerializeField] private float defensiveKnockbackRadius; // Anything within this radius will be knocked back when the knockback is activated.
+	[SerializeField] private float circleAroundPlayerRadius; // For when the turtle picks a point to move to near the player.
+	[SerializeField] private float outOfBoundsCooldown; // Amount of time it takes before the vip begins moving when it is out of range of the camera.
+	[SerializeField] private float fleeCooldown; // Amount of time before the vip begins fleeing.
+	[SerializeField] private QuickTimeEventSystem quickTimeEvent;
 
 	// Private variables
-	//private Transform dodgeTarget; // The target which the vip will focus dodging incoming projectiles from.
-	private RangedEnemy dodgeTarget;
+	private EnemyStates currentState; // The vip's current state. (Same states as the enemy types.)
+
 	private bool isFleeing = false;
-	private bool isDodging = false;
-	private float currentDodgeTime;
-	private float currentFleeTime;
-	private float currentOutOfRangeTime;
-	private List<BaseEnemy> enemies = new List<BaseEnemy>();
+
+	private float currentFleeTime; // Flee timer.
+	private float currentOutOfRangeTime; // Out of range timer (Used for when the vip is out of view of the camera.)
 
 	// Components
 	private PolyNavAgent agent;
@@ -33,10 +31,13 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	// Properties
 	public EnemyStates CurrentState { get => currentState; set => currentState = value; }
+	public float FleeThreshold { get => fleeThreshold; }
+	public float PickFleeDestinationRadius { get => fleeDestinationSearchRadius; }
+	public float DefensiveKnockbackRadius { get => defensiveKnockbackRadius; }
 
 	private void OnEnable()
 	{
-		agent.OnDestinationReached += OnDestinationReached;
+		agent.OnDestinationReached += OnDestinationReached; // Subscribe to OnDestinationReached event. Is raised when the agent reaches a given destination.
 	}
 
 	private void OnDisable()
@@ -47,6 +48,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 	public override void Awake()
 	{
 		base.Awake();
+
 		agent = GetComponent<PolyNavAgent>();
 		cam = Camera.main;
 	}
@@ -54,7 +56,9 @@ public class VIP1 : BaseCharacter, IAICharacter
 	public override void Start()
 	{
 		base.Start();
-		player = Toolbox.instance.GetGameManager().PlayerRef;
+
+		player = Toolbox.instance.GetGameManager().PlayerRef; // Get reference to player.
+		quickTimeEvent.OnKeyPressedOnTime += FillHealthBar;
 	}
 
 	public override void Update()
@@ -64,7 +68,19 @@ public class VIP1 : BaseCharacter, IAICharacter
 		base.Update();
 
 		UpdateState();
-		SetTarget();
+
+		if (!CheckIfWithinRange())
+		{
+			if (currentOutOfRangeTime <= 0)
+			{
+				// Move back to player.
+				GetRandomPointAroundPlayer();
+			}
+			else
+			{
+				currentOutOfRangeTime -= Time.deltaTime;
+			}
+		}
 	}
 
 	public void SetState(EnemyStates newState)
@@ -111,7 +127,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	public void InitIdle()
 	{
-		currentOutOfRangeTime = outOfRangeMoveCooldown;
+		currentOutOfRangeTime = outOfBoundsCooldown;
 	}
 
 
@@ -127,18 +143,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	public void Idle()
 	{
-		if(!CheckIfWithinRange())
-		{
-			if(currentOutOfRangeTime <= 0)
-			{
-				// Move back to player.
-				GetRandomPointAroundPlayer();
-			}
-			else
-			{
-				currentOutOfRangeTime -= Time.deltaTime;
-			}
-		}
+		
 	}
 
 	public void Moving()
@@ -154,49 +159,39 @@ public class VIP1 : BaseCharacter, IAICharacter
 	public override void TakeDamage(float amount, Vector2 damageDirection)
 	{
 		base.TakeDamage(amount, damageDirection);
+
+		if (currentHealth / 10 <= 0.3f)
+		{
+			quickTimeEvent.StartQuickTimeEvent();
+		}
+
 		Flee();
 	}
 
 	private void SearchForNearbyEnemies()
 	{
-		enemies.Clear();
-
 		Collider2D[] _enemies = Physics2D.OverlapCircleAll(transform.position, fleeThreshold);
 
-		if (enemies != null && _enemies.Length > 0 && !isFleeing)
+		if (_enemies != null && _enemies.Length > 0 && !isFleeing)
 		{
 			foreach (Collider2D col in _enemies)
 			{
 				if (col.GetComponent<BaseEnemy>())
 				{
-					enemies.Add(col.GetComponent<BaseEnemy>());
 					Flee();
 				}
 			}
 		}
 	}
 
-	private void Dodge()
+	private void FillHealthBar()
 	{
-		if (enemies.Count > 0 && enemies != null)
-		{
-			dodgeTarget = enemies[0].GetComponent<RangedEnemy>();
-
-			if (dodgeTarget)
-			{
-				RaycastHit2D hit = Physics2D.Linecast(transform.position, dodgeTarget.transform.position);
-				if (hit)
-				{
-					StartCoroutine(DodgeTimer());
-					dodgeTarget.OnShoot -= Dodge;
-				}
-			}
-		}
+		AddHealth(characterData.health.statBaseValue);
 	}
 
 	public void ApplyKnockback()
 	{
-		List<GameObject> otherObjects = DetectObjectsWithinRadius(transform, knockbackRange);
+		List<GameObject> otherObjects = DetectObjectsWithinRadius(transform, defensiveKnockbackRadius);
 
 		if (otherObjects.Count > 0)
 		{
@@ -233,19 +228,13 @@ public class VIP1 : BaseCharacter, IAICharacter
 		return otherObjects; // Return empty list.
 	}
 
-	private void SetTarget()
-	{
-		RangedEnemy[] es = FindObjectsOfType<RangedEnemy>();
-		enemies.AddRange(es);
-	}
-
 	private void Flee()
 	{
-		if (!isFleeing)
+		if (!isFleeing && currentFleeTime <= 0)
 		{
 			StartCoroutine(FleeTimer());
 
-			Vector2 randomPos = GameUtilities.GetRandomPointOnCircle(fleeDestinationRadius);
+			Vector2 randomPos = GameUtilities.GetRandomPointOnCircle(fleeDestinationSearchRadius);
 			agent.SetDestination(randomPos);
 			SetState(EnemyStates.MOVING);
 		}
@@ -253,7 +242,7 @@ public class VIP1 : BaseCharacter, IAICharacter
 
 	private void GetRandomPointAroundPlayer()
 	{
-		Vector2 newPosition = Random.insideUnitCircle * 3f + (Vector2)player.transform.position;
+		Vector2 newPosition = Random.insideUnitCircle * circleAroundPlayerRadius + (Vector2)player.transform.position;
 		agent.SetDestination(newPosition);
 		SetState(EnemyStates.MOVING);
 	}
@@ -270,21 +259,6 @@ public class VIP1 : BaseCharacter, IAICharacter
 	{
 		if (isFleeing) isFleeing = false;
 		SetState(EnemyStates.IDLE);
-	}
-
-	private IEnumerator DodgeTimer()
-	{
-		currentDodgeTime = dodgeCooldown;
-		isDodging = true;
-
-		while (currentDodgeTime > 0)
-		{
-			currentDodgeTime -= Time.deltaTime;
-			yield return null;
-		}
-
-		isDodging = false;
-		yield break;
 	}
 
 	private IEnumerator FleeTimer()
