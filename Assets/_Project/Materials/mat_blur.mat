@@ -31,14 +31,14 @@ Material:
     - _BumpAmt: 111.4
     - _ColorMask: 15
     - _Radius: 14
-    - _Size: 1.71
+    - _Size: 3.86
     - _Stencil: 0.58
-    - _StencilComp: 8
+    - _StencilComp: 7.36
     - _StencilOp: 2.13
     - _StencilReadMask: 268.1
     - _StencilWriteMask: 255.68
     - _UseUIAlphaClip: 1
     m_Colors:
     - _AdditiveColor: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 0}
-    - _Color: {r: 0, g: 0, b: 0, a: 0.14509805}
+    - _Color: {r: 0, g: 0, b: 0, a: 0.1764706}
     - _MultiplyColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}

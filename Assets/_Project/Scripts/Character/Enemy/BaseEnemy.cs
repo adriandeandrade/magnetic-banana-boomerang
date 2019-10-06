@@ -202,7 +202,7 @@ namespace MagneticBananaBoomerang.Characters
 				SetState(EnemyStates.INTERACTING);
 			}
 
-			Debug.Log("Destination Reached!");
+			//Debug.Log("Destination Reached!");
 		}
 
 		public override void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
