@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1997471741165056541}
   - component: {fileID: 1997471741165056540}
+  - component: {fileID: 1499879447}
+  - component: {fileID: 1499879448}
   m_Layer: 0
   m_Name: _Toolbox
   m_TagString: Untagged
@@ -41,5 +43,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 509013ff23b99e14f8da964dca1ddb7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1499879447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997471741165056539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94a8469aa052f8409c34636d8981bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStartTime: 5
+  waveSpawnerUI: {fileID: 0}
+--- !u!114 &1499879448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997471741165056539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1a58ebf2f24ba4f8d44a65b9002261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

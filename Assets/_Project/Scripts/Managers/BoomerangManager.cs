@@ -18,7 +18,7 @@ public class BoomerangManager : BaseManager
 
 	public override void Initialize()
 	{
-		GameObject boomerangResource = Resources.Load("Prefabs/Boomerang") as GameObject;
+		GameObject boomerangResource = Resources.Load("Boomerang") as GameObject;
 		boomerangPrefab = boomerangResource;
 	}
 
@@ -51,13 +51,13 @@ public class BoomerangManager : BaseManager
 			{
 				currentBoomerangInstance = Instantiate(boomerangPrefab, player.transform.position, Quaternion.identity).GetComponent<Boomerang>();
 				currentBoomerangInstance.InitializeBoomerang(this, objectUnderMouse.transform.position, objectUnderMouse);
-				print("Object found. Interacting...");
+				//print("Object found. Interacting...");
 			}
 			else
 			{
 				currentBoomerangInstance = Instantiate(boomerangPrefab, player.transform.position, Quaternion.identity).GetComponent<Boomerang>();
 				currentBoomerangInstance.InitializeBoomerang(this, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-				print("Object not detected, Regular throw initialized.");
+				//print("Object not detected, Regular throw initialized.");
 			}
 
 			canThrowBoomerang = false;
@@ -67,6 +67,6 @@ public class BoomerangManager : BaseManager
 	public void ResetController()
 	{
 		canThrowBoomerang = true;
-		print("Boomerang parameters reset");
+		//print("Boomerang parameters reset");
 	}
 }

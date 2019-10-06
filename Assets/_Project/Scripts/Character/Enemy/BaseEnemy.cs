@@ -202,13 +202,19 @@ namespace MagneticBananaBoomerang.Characters
 				SetState(EnemyStates.INTERACTING);
 			}
 
-			Debug.Log("Destination Reached!");
+			//Debug.Log("Destination Reached!");
 		}
 
 		public override void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)
 		{
 			base.TakeDamage(amount, damageDirection);
-			Debug.Log("Damage Sender: " + damageSender.name);
+			FloatingTextController.CreateFloatingText(amount.ToString(), transform);
+		}
+
+		public override void OnDeath()
+		{
+			base.OnDeath();
+			Toolbox.instance.GetGameManager().WaveSpawnerInstance.AddEnemyKilled();
 		}
 
 		private bool CanSeeTarget()

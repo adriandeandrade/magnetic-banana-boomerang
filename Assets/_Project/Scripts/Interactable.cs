@@ -13,12 +13,12 @@ public abstract class Interactable : MonoBehaviour
 	// Components
 	protected SpriteRenderer spriteRenderer;
 
-	private void Awake()
+	public virtual void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	private void Start()
+	public virtual void Start()
 	{
 		originalColor = spriteRenderer.color;
 	}

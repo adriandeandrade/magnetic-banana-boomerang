@@ -31,4 +31,24 @@ internal class GameUtilities
 
 		return new Vector2(x, y);
 	}
+
+	public static Timer CreateNewTimer()
+	{
+		GameObject timerParent;
+
+		if (!GameObject.Find("Timers"))
+		{
+			timerParent = new GameObject("Timers");
+		}
+		else
+		{
+			timerParent = GameObject.Find("Timers");
+		}
+
+		GameObject timerPrefab = Resources.Load<GameObject>("Prefabs/prefab_Timer");
+		GameObject newTimer = MonoBehaviour.Instantiate(timerPrefab);
+		newTimer.transform.SetParent(timerParent.transform);
+
+		return newTimer.GetComponent<Timer>();
+	}
 }

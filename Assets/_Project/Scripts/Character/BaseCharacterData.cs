@@ -8,8 +8,5 @@ public class BaseCharacterData : ScriptableObject
     [Header("Settings")]
     public string characterName;
     public CharacterType characterType;
-
-    [Header("Stats")]
-    public float maxHealth;
-    // TODO: Add more stats.
+    public Stat health;
 }

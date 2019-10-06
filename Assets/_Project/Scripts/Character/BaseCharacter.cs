@@ -33,9 +33,8 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void Start()
 		{
-			currentHealth = characterData.maxHealth;
+			currentHealth = characterData.health.statBaseValue;
 		}
-
 
 		public virtual void TakeDamage(float amount, Vector2 damageDirection)
 		{
@@ -43,11 +42,16 @@ namespace MagneticBananaBoomerang.Characters
 
 			if (currentHealth <= 0)
 			{
-				Destroy(gameObject);
+				OnDeath();
 				return;
 			}
 
 			knockback.ApplyKnockback(damageDirection, damageColor);
+		}
+
+		public virtual void OnDeath()
+		{
+			Destroy(gameObject);
 		}
 
 		public virtual void RecalculateHealth(float amount)
@@ -56,8 +60,28 @@ namespace MagneticBananaBoomerang.Characters
 
 			if (healthbar != null)
 			{
-				healthbar.fillAmount = currentHealth / characterData.maxHealth;
+				healthbar.fillAmount = currentHealth / characterData.health.statBaseValue;
 			}
+		}
+
+		public virtual void AddHealth(float amount)
+		{
+			currentHealth += amount;
+
+			if (healthbar != null)
+			{
+				healthbar.fillAmount = currentHealth / characterData.health.statBaseValue;
+			}
+		}
+
+		public float GetCurrentHealth()
+		{
+			return currentHealth;
+		}
+
+		public float GetMaxHealth()
+		{
+			return characterData.health.statBaseValue;
 		}
 
 		public virtual void TakeDamage(float amount, Vector2 damageDirection, BaseCharacter damageSender)

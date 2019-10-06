@@ -40,12 +40,10 @@ public class RangedEnemy : BaseEnemy
 		if (hit2D)
 		{
 			canSeeTarget = true;
-			Debug.Log("Can see target");
 		}
 		else
 		{
 			canSeeTarget = false;
-			Debug.Log("Can not see target");
 		}
 	}
 

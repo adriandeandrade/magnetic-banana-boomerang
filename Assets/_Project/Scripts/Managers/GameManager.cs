@@ -3,59 +3,114 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(Timer))]
 public class GameManager : BaseManager
 {
 	// Inspector Fields
-	[SerializeField] private GameObject countdownPanel;
-	[SerializeField] private TextMeshProUGUI countDownText;
-	[SerializeField] private WaveSpawner waveSpawner;
-	[SerializeField] private float waveStartDelay;
+	[SerializeField] private float gameStartTime; // The amount of timer that the timer will countdown for in before the round starts.
+	[SerializeField] private WaveSpawnerUI waveSpawnerUI;
 
-	private Timer timer;
-	private bool countingDown;
+	// Private Variables
+	private bool gameStarted = false;
+	private Player player;
+
+	// Components
+	private WaveSpawner currentWaveSpawner;
+
+	// Properties
+	public WaveSpawner WaveSpawnerInstance
+	{
+		get
+		{
+			if (currentWaveSpawner != null)
+			{
+				return currentWaveSpawner;
+			}
+			else
+			{
+				Debug.LogError("Wave Spawner cannot be found, please assign a wave spawner!");
+				return null;
+			}
+		}
+	}
+
+	public Player PlayerRef
+	{
+		get
+		{
+			if (player != null)
+			{
+				return player;
+			}
+			else
+			{
+				player = FindObjectOfType<Player>();
+				return player;
+			}
+		}
+	}
+
+	// Events
+
+	private void Update()
+	{
+		// TODO: Remove this when done debugging!
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			StartGame();
+		}
+	}
 
 	private void Awake()
 	{
-		timer = new Timer();
+		player = FindObjectOfType<Player>();
 	}
 
 	private void Start()
 	{
-		StartTimer();
-	}
-
-	private void StartTimer()
-	{
-		timer = gameObject.AddComponent<Timer>();
-		timer.OnTimerEnd += StartRound;
-		timer.StartTimer(2f);
-		countingDown = true;
-
-		countdownPanel.SetActive(true);
-	}
-
-	private void Update()
-	{
-		if(countingDown)
+		if (!gameStarted)
 		{
-			countDownText.SetText(timer.TimeLeft.ToString("f0"));
+			StartGame();
 		}
+
 	}
 
-	private void StartRound()
+	private void StartGame()
 	{
-		StartCoroutine(RoundStartRoutine());
-		countingDown = false;
+		StartCoroutine(OnGameStartRoutine());
+		gameStarted = true;
 	}
 
-	private IEnumerator RoundStartRoutine()
+	private IEnumerator OnGameStartRoutine()
 	{
-		countDownText.SetText("Round Start");
-		yield return new WaitForSeconds(waveStartDelay);
+		Timer newTimer = GameUtilities.CreateNewTimer();
+		float animationFinishTime = waveSpawnerUI.ShowWaveSpawnerUI();
+		yield return new WaitForSeconds(animationFinishTime + 0.5f);
 
-		countdownPanel.SetActive(false);
-		waveSpawner.StartWave();
-		Destroy(timer);
+		newTimer.StartTimer(gameStartTime);
+
+		while (newTimer != null)
+		{
+			waveSpawnerUI.SetCountdownText(newTimer.TimeLeft);
+
+			yield return null;
+		}
+
+		waveSpawnerUI.SetCountdownText("Round Started!");
+		yield return new WaitForSeconds(0.5f);
+		waveSpawnerUI.HideWaveSpawnerUI();
+
+		GameObject waveSpawnerPrefab = Resources.Load<GameObject>("Prefabs/Components/prefab_WaveSpawner");
+		WaveSpawner newWaveSpawner = Instantiate(waveSpawnerPrefab).GetComponent<WaveSpawner>();
+		currentWaveSpawner = newWaveSpawner;
+		newWaveSpawner.StartFirstRound(waveSpawnerUI);
+
+		yield break;
+	}
+
+	public void GameOver()
+	{
+		Debug.Log("Game has ended. All waves have been cleared.");
 	}
 
 	public override void Initialize()

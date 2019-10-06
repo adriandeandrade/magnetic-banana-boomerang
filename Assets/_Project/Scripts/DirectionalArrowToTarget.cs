@@ -28,10 +28,10 @@ public class DirectionalArrowToTarget : MonoBehaviour
 		{
 			DrawArrowPointingAtTarget(transform.position);
 		}
-        else
-        {
-            arrowUI.SetActive(false);
-        }
+		else
+		{
+			arrowUI.SetActive(false);
+		}
 	}
 
 	private bool CheckIfWithinBounds()

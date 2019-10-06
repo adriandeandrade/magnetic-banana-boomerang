@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Wave", menuName = "Waves/New Wave")]
+[CreateAssetMenu(fileName = "New Wave", menuName = "Wave Spawning/Waves/New Wave")]
 public class Wave : ScriptableObject
 {
     [Tooltip("Place prefabs of the enemies you want to spawn in the wave.")]

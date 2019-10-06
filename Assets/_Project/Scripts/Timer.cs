@@ -31,8 +31,9 @@ public class Timer : MonoBehaviour
 				{
 					OnTimerEnd.Invoke();
 				}
+
+				Destroy(gameObject, 0.2f);
 			}
 		}
 	}
-
 }

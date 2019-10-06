@@ -5,10 +5,63 @@ using MagneticBananaBoomerang.Characters;
 
 public class Player : BaseCharacter
 {
+	// Inspector Fields
+	[SerializeField] private PlayerData playerData;
+
+	// Private Variables
+	private Inventory inventory;
+	private StatManager statManager;
+
+	// Properties;
+	public Inventory PlayerInventory
+	{
+		get
+		{
+			if (inventory != null)
+			{
+				return inventory;
+			}
+			else
+			{
+				inventory = GetComponent<Inventory>();
+				return inventory;
+			}
+		}
+	}
+
+	public StatManager PlayerStats
+	{
+		get
+		{
+			if(statManager != null)
+			{
+				return statManager;
+			}
+			else
+			{
+				statManager = GetComponent<StatManager>();
+				return statManager;
+			}
+		}
+	}
+
+	public override void Awake()
+	{
+		base.Awake();
+		inventory = GetComponent<Inventory>();
+		statManager = GetComponent<StatManager>();
+	}
+
 	public override void Update()
 	{
 		HandleMovement();
 		base.Update();
+
+		// Debug: TODO: Remove this!
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			TakeDamage(5f, Vector2.zero);
+		}
 	}
 
 	private void HandleMovement()
@@ -36,7 +89,12 @@ public class Player : BaseCharacter
 			Boomerang boomerang = other.GetComponent<Boomerang>();
 			boomerang.Pickup();
 
-			print("Triggered boomerang.");
+			//print("Triggered boomerang.");
 		}
+	}
+
+	public PlayerData GetPlayerData()
+	{
+		return playerData;
 	}
 }
