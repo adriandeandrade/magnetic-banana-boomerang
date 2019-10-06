@@ -14,10 +14,11 @@ GameObject:
   - component: {fileID: 2455228611323347958}
   - component: {fileID: 2455228611323347946}
   - component: {fileID: 2455228611323347947}
+  - component: {fileID: -8733597515673159954}
   - component: {fileID: 6419555457492428588}
   - component: {fileID: 2455228611323347948}
   m_Layer: 11
-  m_Name: TestEnemy
+  m_Name: TerrorDactyl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,6 +168,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackAmount: 20
   knockbackTime: 0.5
+--- !u!114 &-8733597515673159954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455228611323347956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251146252b614472188d61fa2559d771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stallTime: 3
 --- !u!114 &6419555457492428588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +198,7 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healthbar: {fileID: 0}
   knockback: {fileID: 0}
+  stall: {fileID: 0}
   requireTarget: 1
   useAI: 1
   maxDetectionDistance: 0

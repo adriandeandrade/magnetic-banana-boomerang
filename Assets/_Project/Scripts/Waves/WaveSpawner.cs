@@ -30,9 +30,15 @@ public class WaveSpawner : MonoBehaviour
 	private void OnEnable()
 	{
 		timer.OnTimerEnd += OnCountdownFinished;
-	}
+        timer.StartTimer(0);
+    }
 
-	private void Awake()
+    private void OnDisable()
+    {
+
+    }
+
+    private void Awake()
 	{
 		waveSpawnerUI = GetComponent<WaveSpawnerUI>();
 	}

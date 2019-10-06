@@ -19,11 +19,14 @@ namespace MagneticBananaBoomerang.Characters
 		// Components
 		[HideInInspector]
 		public Knockback knockback;
+        [HideInInspector]
+        public Stall stall;
 
 		public override void Awake()
 		{
 			base.Awake();
 			knockback = GetComponent<Knockback>();
+            stall = GetComponent<Stall>();
 		}
 
 		public override void Update()
