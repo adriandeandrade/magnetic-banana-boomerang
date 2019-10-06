@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30339c5f15785d9459cdd88865efb395, type: 3}
   m_Name: ViviWaveTest
   m_EditorClassIdentifier: 
-  enemyTypes: []
-  numberOfEnemiesToSpawn: 0
+  enemyTypes:
+  - {fileID: 2455228611323347956, guid: 82a5c5028ee94c4448f7ce804adae0ed, type: 3}
+  numberOfEnemiesToSpawn: 1
   timeBetweenSpawns: 0

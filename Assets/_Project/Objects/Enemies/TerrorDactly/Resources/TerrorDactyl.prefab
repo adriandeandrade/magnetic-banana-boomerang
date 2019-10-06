@@ -203,7 +203,7 @@ MonoBehaviour:
   requireTarget: 1
   useAI: 1
   maxDetectionDistance: 0
-  currentState: 0
+  currentState: 1
   targets: []
   lineOfSightFilter:
     serializedVersion: 2

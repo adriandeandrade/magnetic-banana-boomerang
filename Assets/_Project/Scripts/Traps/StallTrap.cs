@@ -6,11 +6,13 @@ using MagneticBananaBoomerang.Characters;
 public class StallTrap : Trap
 {
     Animator anim;
+    SpriteRenderer sRenderer;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
+        sRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,8 @@ public class StallTrap : Trap
     public override void Deactivate()
     {
         active = false;
+        RemoveStall();
+
     }
 
     private void ApplyStall()
@@ -45,6 +49,28 @@ public class StallTrap : Trap
                 {
                     Debug.Log("Tried to stall: " + otherObject.name);
                     canStall.stall.ApplyStall();
+                    sRenderer.sortingOrder = 1;
+                }
+            }
+        }
+    }
+
+    private void RemoveStall()
+    {
+        sRenderer.sortingOrder = -1;
+
+        List<GameObject> otherObjects = DetectObjectsWithinRadius(transform, range);
+
+        if (otherObjects.Count > 0)
+        {
+            foreach (GameObject otherObject in otherObjects)
+            {
+                BaseCharacter stalled = otherObject.GetComponent<BaseCharacter>();
+
+                if (stalled != null)
+                {
+                    //Debug.Log("Release: " + otherObject.name);
+                    stalled.stall.RemoveStall();
                 }
             }
         }

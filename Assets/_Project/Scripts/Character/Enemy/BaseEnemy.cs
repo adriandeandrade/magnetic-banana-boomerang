@@ -170,7 +170,8 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void Idle()
 		{
-			SetState(EnemyStates.MOVING);
+            SetState(EnemyStates.MOVING);
+            
 		}
 
 		public virtual void Moving()
