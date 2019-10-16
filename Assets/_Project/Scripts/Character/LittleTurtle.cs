@@ -14,6 +14,7 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 	[SerializeField] private float circleAroundPlayerRadius; // For when the turtle picks a point to move to near the player.
 	[SerializeField] private float outOfBoundsCooldown; // Amount of time it takes before the vip begins moving when it is out of range of the camera.
 	[SerializeField] private float fleeCooldown; // Amount of time before the vip begins fleeing.
+    [SerializeField] private float qteCooldown = 3f;
 	[SerializeField] private QuickTimeEventSystem quickTimeEvent;
 
 	// Private variables
@@ -23,6 +24,7 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 
 	private float currentFleeTime; // Flee timer.
 	private float currentOutOfRangeTime; // Out of range timer (Used for when the vip is out of view of the camera.)
+    private float currentQTETime;
 
 	// Components
 	private PolyNavAgent agent;
@@ -64,6 +66,16 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 	public override void Update()
 	{
 		UpdateAnimator();
+
+        if(Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            TakeDamage(1f, Vector2.zero);
+        }
+
+        if(currentQTETime > 0)
+        {
+            currentQTETime -= Time.deltaTime;
+        }
 
 		base.Update();
 
@@ -160,9 +172,10 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 	{
 		base.TakeDamage(amount, damageDirection);
 
-		if (currentHealth / 10 <= 0.3f)
+		if (currentHealth / 10 <= 0.3f && currentQTETime <= 0)
 		{
 			quickTimeEvent.StartQuickTimeEvent();
+            currentQTETime = qteCooldown;
 		}
 
 		Flee();
@@ -276,7 +289,12 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 		yield break;
 	}
 
-	public override void UpdateAnimator()
+    public override void OnDeath()
+    {
+        Toolbox.instance.GetGameManager().GameOver();
+    }
+
+    public override void UpdateAnimator()
 	{
 		animator.SetFloat("Horizontal", Mathf.RoundToInt(agent.velocity.x));
 		animator.SetFloat("Vertical", Mathf.RoundToInt(agent.velocity.y));
@@ -296,5 +314,5 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 		if (agent.velocity.normalized == Vector2.one) facingDirection = 5f;
 		if (agent.velocity.normalized == new Vector2(1, -1)) facingDirection = 6f;
 		if (agent.velocity.normalized == new Vector2(0, 1)) facingDirection = 7f;
-	}
+	} 
 }

@@ -82,7 +82,12 @@ public class Player : BaseCharacter
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+    public override void OnDeath()
+    {
+        Toolbox.instance.GetGameManager().GameOver();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.GetComponent<Boomerang>())
 		{

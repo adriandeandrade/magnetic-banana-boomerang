@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 [RequireComponent(typeof(Timer))]
@@ -110,7 +111,7 @@ public class GameManager : BaseManager
 
 	public void GameOver()
 	{
-		Debug.Log("Game has ended. All waves have been cleared.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public override void Initialize()

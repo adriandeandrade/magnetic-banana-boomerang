@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4456378792493130422}
   - component: {fileID: 4456378792493130420}
   m_Layer: 0
-  m_Name: WaveSpawner
+  m_Name: prefab_WaveSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,17 +49,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 5299062cae552ae44888636d0e90f8bb, type: 2}
-  - {fileID: 11400000, guid: 5299062cae552ae44888636d0e90f8bb, type: 2}
+  - {fileID: 11400000, guid: 10b1780a981424046811a1b2043a7e5a, type: 2}
+  - {fileID: 11400000, guid: 904a88448cc1df84ab5875915ad3e02d, type: 2}
+  - {fileID: 11400000, guid: 829dd8d81131ec247ace095fee787ce6, type: 2}
   spawnPoints:
   - {fileID: 4456378792699714597}
   - {fileID: 4456378792633457965}
   - {fileID: 4456378792957571853}
   - {fileID: 4456378792540799223}
+  intermissionTime: 10
+  roundStartTime: 5
   enemyPrefab: {fileID: 2455228611323347956, guid: 82a5c5028ee94c4448f7ce804adae0ed,
     type: 3}
-  timer: {fileID: 4456378792493130420}
-  timeBetweenWaves: 1
 --- !u!114 &4456378792493130420
 MonoBehaviour:
   m_ObjectHideFlags: 0

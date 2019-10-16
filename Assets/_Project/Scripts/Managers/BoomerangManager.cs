@@ -7,7 +7,10 @@ using MagneticBananaBoomerang.Characters;
 
 public class BoomerangManager : BaseManager
 {
-	// Inspector Fields
+    // Inspector Fields
+    [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
+
+	// Private Variables
 	private bool canThrowBoomerang = true;
 	private Boomerang currentBoomerangInstance; // To keep reference of the boomerang.
 
@@ -44,7 +47,7 @@ public class BoomerangManager : BaseManager
 
 	public void SpawnBoomerang()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && canThrowBoomerang)
+		if (Input.GetKeyDown(shootKey) && canThrowBoomerang)
 		{
 			GameObject objectUnderMouse = GetObjectUnderMouse.GetObject();
 			if (objectUnderMouse)

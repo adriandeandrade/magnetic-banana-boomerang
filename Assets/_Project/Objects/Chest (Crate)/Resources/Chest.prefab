@@ -121,8 +121,8 @@ MonoBehaviour:
   possibleItemSpawns:
   - {fileID: 11400000, guid: 3dff186be85854d47bccb543580b5c57, type: 2}
   - {fileID: 11400000, guid: 9d18f3aad27c3bf42b4c16db5be7697d, type: 2}
-  minAmountItemSpawns: 2
-  maxAmountItemSpawns: 4
+  minAmountItemSpawns: 1
+  maxAmountItemSpawns: 3
   debug: 0
 --- !u!61 &6262493397402723741
 BoxCollider2D:
