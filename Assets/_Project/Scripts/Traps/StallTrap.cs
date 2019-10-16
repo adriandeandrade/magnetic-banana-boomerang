@@ -24,13 +24,14 @@ public class StallTrap : Trap
     public override void Activate()
     {
         InitializeTimer();
-
+        anim.SetTrigger("activate");
         ApplyStall();
     }
 
     public override void Deactivate()
     {
         active = false;
+        anim.SetTrigger("deactivate");
         RemoveStall();
 
     }
@@ -49,6 +50,7 @@ public class StallTrap : Trap
                 {
                     Debug.Log("Tried to stall: " + otherObject.name);
                     canStall.stall.ApplyStall();
+                    canStall.GetComponent<Rigidbody2D>().MovePosition(transform.position);
                     sRenderer.sortingOrder = 1;
                 }
             }
