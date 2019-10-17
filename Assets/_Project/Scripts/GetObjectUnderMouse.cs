@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MagneticBananaBoomerang.Characters;
 
 public class GetObjectUnderMouse : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class GetObjectUnderMouse : MonoBehaviour
 
 		if (hit)
 		{
+			if(hit.collider.GetComponent<BaseEnemy>()) return null;
+			
 			return hit.collider.gameObject;
 
 			/* Interactable interactable = hit.collider.GetComponent<Interactable>();

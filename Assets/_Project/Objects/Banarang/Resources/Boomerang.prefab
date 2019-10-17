@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3180045138755940237}
   - component: {fileID: 8982789930520855709}
   - component: {fileID: 9113470587301023345}
-  - component: {fileID: 2599935785294279201}
   - component: {fileID: 6049036186553094554}
   - component: {fileID: 6619490967418648811}
+  - component: {fileID: 8753136834574015782}
   m_Layer: 8
   m_Name: Boomerang
   m_TagString: Untagged
@@ -98,32 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   boomerangStat: {fileID: 11400000, guid: 89a1f148dcb87c4479afd1e7fccde937, type: 2}
---- !u!61 &2599935785294279201
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17914694266026874}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0022361428, y: 0.12474221}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.98, y: 0.89}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.87030387, y: 0.7505156}
-  m_EdgeRadius: 0
 --- !u!96 &6049036186553094554
 TrailRenderer:
   serializedVersion: 2
@@ -241,3 +215,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &8753136834574015782
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17914694266026874}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.03}
+  serializedVersion: 2
+  m_Radius: 0.52

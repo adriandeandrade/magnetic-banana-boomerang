@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BaseBoomerangDamage
   m_EditorClassIdentifier: 
   statName: Base Boomerang Damage
-  statBaseValue: 3
+  statBaseValue: 1
   upgradeCost: 2
-  upgradeAmount: 3
+  upgradeAmount: 2

@@ -2083,6 +2083,10 @@ PrefabInstance:
       propertyPath: waveSpawnerUI
       value: 
       objectReference: {fileID: 341258198}
+    - target: {fileID: 1499879447, guid: 56b0d63b06a72f34b9ed65205e15b48f, type: 3}
+      propertyPath: gameStartTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b0d63b06a72f34b9ed65205e15b48f, type: 3}
 --- !u!1001 &5843885619166920819

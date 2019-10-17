@@ -15,26 +15,21 @@ public class Boomerang : MonoBehaviour
 
 	// Private Variables
 	private GameObject detectedObjectInstance; // Gets set when a new boomerang is spawned and initialized with data from BoomerangManager.
+	private bool returning = false;
 
 	// Components
 	private BoomerangManager boomerangManager;
 	private Player player;
-	private Collider2D col;
+	private CircleCollider2D col;
 	private Rigidbody2D rBody;
 
 	// Events
-	public delegate void OnReachEndOfPathAction(); // Gets raised when we reach the end of the path.
-	public static event OnReachEndOfPathAction OnReachEndOfPath;
-
 	public delegate void OnPickedUpAction();
 	public static event OnPickedUpAction OnPickedUp;
 
-	public delegate void OnHitEnemyAction();
-	public static event OnHitEnemyAction OnHitEnemy;
-
 	private void Awake()
 	{
-		col = GetComponent<Collider2D>();
+		col = GetComponent<CircleCollider2D>();
 		rBody = GetComponent<Rigidbody2D>();
 		player = Toolbox.instance.GetGameManager().PlayerRef;
 	}
@@ -50,10 +45,67 @@ public class Boomerang : MonoBehaviour
 		}
 		else
 		{
-			StartCoroutine(MoveToPointOverSpeed(targetDestinationPoint, speed));
+			StartCoroutine(MoveToPointAndDetectCollisions(targetDestinationPoint, speed, false));
 		}
 
 		Invoke("EnableCollider", 0.2f);
+	}
+
+	private void StartReturnToPlayerWithCollisions()
+	{
+		StartCoroutine(MoveToPointAndDetectCollisions(player.transform.position, speed, true));
+	}
+
+	IEnumerator MoveToPointAndDetectCollisions(Vector3 endPoint, float _speed, bool returnToPlayer)
+	{
+		Vector2 dir = Vector2.zero;
+		Vector3 targetEndpoint = Vector2.zero;
+		HashSet<GameObject> objectsHit = new HashSet<GameObject>(); // Keeps track of objects we hit so we dont deal damage multiple times.
+
+		if (returnToPlayer)
+		{
+			dir = (transform.position - player.transform.position).normalized;
+			targetEndpoint = player.transform.position;
+		}
+		else
+		{
+			dir = (transform.position - endPoint).normalized;
+			targetEndpoint = endPoint;
+		}
+
+		while (rBody.position != (Vector2)targetEndpoint)
+		{
+			if (returnToPlayer) targetEndpoint = player.transform.position;
+
+			rBody.position = Vector2.MoveTowards(rBody.position, targetEndpoint, _speed * Time.fixedDeltaTime);
+
+			Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(rBody.position, col.radius); // Check for the objects hit.
+
+			if (detectedObjects.Length > 0 && detectedObjects != null)
+			{
+				foreach (Collider2D detectedObject in detectedObjects)
+				{
+					if (detectedObject.gameObject == player.transform.gameObject) continue;
+
+					BaseEnemy _enemy = detectedObject.GetComponent<BaseEnemy>();
+
+					if (_enemy != null)
+					{
+						if (!objectsHit.Contains(_enemy.gameObject)) // If the hashset doesnt contain the object already add it to the hashset and deal damage to it.
+						{
+							Vector2 direction = transform.position - detectedObject.transform.position;
+							_enemy.TakeDamage(player.PlayerStats.GetStatValue(boomerangStat), Vector2.zero, player);
+							objectsHit.Add(detectedObject.gameObject);
+						}
+					}
+				}
+			}
+
+			yield return new WaitForFixedUpdate();
+		}
+
+		Invoke("StartReturnToPlayerWithCollisions", 0.01f);
+		yield break;
 	}
 
 	IEnumerator MoveToPointOverSpeed(Vector3 endPoint, float _speed)
@@ -74,29 +126,12 @@ public class Boomerang : MonoBehaviour
 				_interactable.Interact();
 			}
 
-			BaseEnemy _enemy = detectedObjectInstance.GetComponent<BaseEnemy>();
 			LittleTurtle littleTurtle = detectedObjectInstance.GetComponent<LittleTurtle>();
-
-			if (_enemy != null)
-			{
-				//_enemy.GetComponent<PolyNavAgent>().enabled = false;
-
-				Vector2 direction = transform.position - detectedObjectInstance.transform.position;
-				detectedObjectInstance.GetComponent<BaseEnemy>().TakeDamage(player.PlayerStats.GetStatValue(boomerangStat), direction, player);
-				detectedObjectInstance = null;
-
-				if (OnHitEnemy != null)
-				{
-					OnHitEnemy.Invoke();
-				}
-
-			}
-			else if (littleTurtle != null)
+			if (littleTurtle != null)
 			{
 				littleTurtle.ApplyKnockback();
 				detectedObjectInstance = null;
 			}
-
 		}
 
 		yield return StartCoroutine(MoveToPlayerOverSpeed()); // Return to player.

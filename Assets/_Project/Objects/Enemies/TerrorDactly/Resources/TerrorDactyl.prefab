@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2455228611323347944}
   - component: {fileID: 2455228611323347959}
   - component: {fileID: 2455228611323347958}
-  - component: {fileID: 2455228611323347946}
   - component: {fileID: 2455228611323347947}
   - component: {fileID: 6419555457492428588}
   - component: {fileID: 2455228611323347948}
+  - component: {fileID: 7625618250940966504}
   m_Layer: 11
   m_Name: TerrorDactyl
   m_TagString: Untagged
@@ -128,32 +128,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &2455228611323347946
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2455228611323347956}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.039210558}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.25, y: 0.92}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.1823502, y: 0.9215789}
-  m_EdgeRadius: 0
 --- !u!114 &2455228611323347947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +202,22 @@ MonoBehaviour:
   closerPointOnInvalid: 1
   debugPath: 1
   velocity: {x: 0, y: 0}
+--- !u!58 &7625618250940966504
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455228611323347956}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.36
 --- !u!1 &3228617060386008107
 GameObject:
   m_ObjectHideFlags: 0
