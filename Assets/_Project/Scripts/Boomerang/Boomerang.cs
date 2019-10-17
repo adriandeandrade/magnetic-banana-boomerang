@@ -11,11 +11,13 @@ public class Boomerang : MonoBehaviour
 	[Header("Boomerang Configuration")]
 	[Tooltip("The speed at which the boomerang travels.")]
 	[SerializeField] private float speed = 10f;
+	[SerializeField] private float damageFallOffAmount = 0.15f;
 	[SerializeField] private Stat boomerangStat;
 
 	// Private Variables
 	private GameObject detectedObjectInstance; // Gets set when a new boomerang is spawned and initialized with data from BoomerangManager.
 	private bool returning = false;
+	private float nextDamage;
 
 	// Components
 	private BoomerangManager boomerangManager;
@@ -24,8 +26,7 @@ public class Boomerang : MonoBehaviour
 	private Rigidbody2D rBody;
 
 	// Events
-	public delegate void OnPickedUpAction();
-	public static event OnPickedUpAction OnPickedUp;
+	public System.Action OnBoomerangPickedUpAction;
 
 	private void Awake()
 	{
@@ -38,6 +39,7 @@ public class Boomerang : MonoBehaviour
 	{
 		boomerangManager = _boomerangManager;
 		detectedObjectInstance = _detectedObjectInstance;
+		nextDamage = player.PlayerStats.GetStatValue(boomerangStat);
 
 		if (detectedObjectInstance != null)
 		{
@@ -94,7 +96,14 @@ public class Boomerang : MonoBehaviour
 						if (!objectsHit.Contains(_enemy.gameObject)) // If the hashset doesnt contain the object already add it to the hashset and deal damage to it.
 						{
 							Vector2 direction = transform.position - detectedObject.transform.position;
-							_enemy.TakeDamage(player.PlayerStats.GetStatValue(boomerangStat), Vector2.zero, player);
+							_enemy.TakeDamage(nextDamage, Vector2.zero, player);
+
+							// TODO: Have a look at this again.
+							if(nextDamage - damageFallOffAmount * player.PlayerStats.GetStatValue(boomerangStat) > 0)
+							{
+								nextDamage -= damageFallOffAmount * player.PlayerStats.GetStatValue(boomerangStat);
+							}
+
 							objectsHit.Add(detectedObject.gameObject);
 						}
 					}
@@ -156,9 +165,9 @@ public class Boomerang : MonoBehaviour
 
 	public void Pickup()
 	{
-		if (OnPickedUp != null)
+		if (OnBoomerangPickedUpAction != null)
 		{
-			OnPickedUp();
+			OnBoomerangPickedUpAction.Invoke();
 		}
 
 		Destroy(gameObject);

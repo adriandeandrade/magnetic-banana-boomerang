@@ -7,8 +7,8 @@ using MagneticBananaBoomerang.Characters;
 
 public class BoomerangManager : BaseManager
 {
-    // Inspector Fields
-    [SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
+	// Inspector Fields
+	[SerializeField] private KeyCode shootKey = KeyCode.Mouse0;
 
 	// Private Variables
 	private bool canThrowBoomerang = true;
@@ -23,16 +23,6 @@ public class BoomerangManager : BaseManager
 	{
 		GameObject boomerangResource = Resources.Load("Boomerang") as GameObject;
 		boomerangPrefab = boomerangResource;
-	}
-
-	private void OnEnable()
-	{
-		Boomerang.OnPickedUp += ResetController;
-	}
-
-	private void OnDisable()
-	{
-		Boomerang.OnPickedUp -= ResetController;
 	}
 
 	private void Awake()
@@ -53,12 +43,14 @@ public class BoomerangManager : BaseManager
 			if (objectUnderMouse)
 			{
 				currentBoomerangInstance = Instantiate(boomerangPrefab, player.transform.position, Quaternion.identity).GetComponent<Boomerang>();
+				currentBoomerangInstance.OnBoomerangPickedUpAction += OnBoomerangPickedUp;
 				currentBoomerangInstance.InitializeBoomerang(this, objectUnderMouse.transform.position, objectUnderMouse);
 				//print("Object found. Interacting...");
 			}
 			else
 			{
 				currentBoomerangInstance = Instantiate(boomerangPrefab, player.transform.position, Quaternion.identity).GetComponent<Boomerang>();
+				currentBoomerangInstance.OnBoomerangPickedUpAction += OnBoomerangPickedUp;
 				currentBoomerangInstance.InitializeBoomerang(this, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 				//print("Object not detected, Regular throw initialized.");
 			}
@@ -67,9 +59,8 @@ public class BoomerangManager : BaseManager
 		}
 	}
 
-	public void ResetController()
+	public void OnBoomerangPickedUp()
 	{
 		canThrowBoomerang = true;
-		//print("Boomerang parameters reset");
 	}
 }

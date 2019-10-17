@@ -25,19 +25,7 @@ public class GetObjectUnderMouse : MonoBehaviour
 		if (hit)
 		{
 			if(hit.collider.GetComponent<BaseEnemy>()) return null;
-			
 			return hit.collider.gameObject;
-
-			/* Interactable interactable = hit.collider.GetComponent<Interactable>();
-			if (interactable != null)
-			{
-				interactable.OnHover();
-
-				if (Input.GetKeyDown(KeyCode.F))
-				{
-					boomerangManager.Interact(FindObjectOfType<Player>().transform.position, hit.collider.transform.position);
-				}
-			} */
 		}
 
 		return null;
