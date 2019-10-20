@@ -16,7 +16,6 @@ using UnityEngine;
 
 namespace MagneticBananaBoomerang.Characters
 {
-	[RequireComponent(typeof(Rigidbody2D))]
 	[RequireComponent(typeof(Animator))]
 	public abstract class BaseCharacterMovement : MonoBehaviour
 	{
@@ -58,7 +57,7 @@ namespace MagneticBananaBoomerang.Characters
 
 		public virtual void Update()
 		{
-			
+			GetFacingDirection();
 		}
 
         public virtual void FixedUpdate()
@@ -71,11 +70,15 @@ namespace MagneticBananaBoomerang.Characters
         {
             velocity = direction;
             rBody.velocity = velocity * moveSpeed;
+			UpdateAnimator();
         }
 
         public virtual void UpdateAnimator()
         {
-            // TODO: Update animator parameters here.
+            animator.SetFloat("Horizontal", velocity.x);
+            animator.SetFloat("Vertical", velocity.y);
+			animator.SetFloat("Speed", velocity.sqrMagnitude);
+			animator.SetFloat("FacingDirection", facingDirection);
         }
 
         public virtual void GetFacingDirection()
