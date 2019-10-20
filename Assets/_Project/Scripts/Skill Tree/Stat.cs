@@ -9,4 +9,6 @@ public class Stat : ScriptableObject
     public float statBaseValue;
     public int upgradeCost;
     public float upgradeAmount; // The amount that will be added to the stat.
+
+    
 }

@@ -11,7 +11,7 @@ public class Boomerang : MonoBehaviour
 	[Header("Boomerang Configuration")]
 	[Tooltip("The speed at which the boomerang travels.")]
 	[SerializeField] private float speed = 10f;
-	[SerializeField] private float damageFallOffAmount = 0.15f;
+	[SerializeField] private float damageFallOffAmount = 0.20f;
 	[SerializeField] private Stat boomerangStat;
 
 	// Private Variables
