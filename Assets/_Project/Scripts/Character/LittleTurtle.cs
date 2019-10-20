@@ -69,7 +69,7 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 
         if(Input.GetKeyDown(KeyCode.Alpha6))
         {
-            TakeDamage(1f, Vector2.zero);
+            quickTimeEvent.StartQuickTimeEvent();
         }
 
         if(currentQTETime > 0)

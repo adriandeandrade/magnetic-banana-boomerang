@@ -7,10 +7,9 @@ using TMPro;
 public class QuickTimeEventSystem : MonoBehaviour
 {
 	// Inspector Fields
-	[SerializeField] private List<KeyCode> possibleQuickTimeEventKeys;
+	[SerializeField] private List<QTEKey> possibleQTEKeys; /* W = 0, A = 1, S = 2, D = 3 */
 	[SerializeField] private GameObject quickTimeEventUI;
 	[SerializeField] private Image timerBar;
-	[SerializeField] private TextMeshProUGUI keyText;
 	[SerializeField] private float waitForKeyTime; // The amount of the time you have to press the key in.
 
 	// Private Variables
@@ -42,26 +41,10 @@ public class QuickTimeEventSystem : MonoBehaviour
 
 	private void SetRandomKey()
 	{
-		quickTimeEventKeycode = possibleQuickTimeEventKeys[Random.Range(0, possibleQuickTimeEventKeys.Count)];
+		int randomIndex = Random.Range(0, possibleQTEKeys.Count);
+		quickTimeEventKeycode = possibleQTEKeys[randomIndex].associatedKeycode;
 
-		switch (quickTimeEventKeycode)
-		{
-			case KeyCode.W:
-				keyText.SetText("W");
-				break;
-
-			case KeyCode.A:
-				keyText.SetText("A");
-				break;
-
-			case KeyCode.S:
-				keyText.SetText("S");
-				break;
-
-			case KeyCode.D:
-				keyText.SetText("D");
-				break;
-		}
+		possibleQTEKeys[randomIndex].SetQTEKey();
 	}
 
 	private IEnumerator QuickTimeEvent()
@@ -79,10 +62,7 @@ public class QuickTimeEventSystem : MonoBehaviour
 					OnKeyPressedOnTime.Invoke();
 				}
 
-				quickTimeEventUI.SetActive(false);
-				isInQuicktimeEvent = false;
-				Time.timeScale = 1f;
-
+				ResetQTE();
 				yield break;
 			}
 
@@ -99,15 +79,44 @@ public class QuickTimeEventSystem : MonoBehaviour
 			OnKeyNotPressedInTime.Invoke();
 		}
 
-		quickTimeEventUI.SetActive(false);
-		isInQuicktimeEvent = false;
-		Time.timeScale = 1f;
-
+		ResetQTE();
 		yield break;
 	}
 
 	public void OnQTEAnimationFinished()
 	{
 		StartCoroutine(QuickTimeEvent());
+	}
+
+	private void ResetQTE()
+	{
+		foreach (QTEKey key in possibleQTEKeys)
+		{
+			key.ResetQTEKey();
+		}
+
+		isInQuicktimeEvent = false;
+		timerBar.fillAmount = 1;
+		quickTimeEventUI.SetActive(false);
+		Time.timeScale = 1f;
+	}
+
+	[System.Serializable]
+	public struct QTEKey
+	{
+		public KeyCode associatedKeycode;
+		public Sprite regularKey;
+		public Sprite highlightedKey;
+		public Image keyImage;
+
+		public void SetQTEKey()
+		{
+			keyImage.sprite = highlightedKey;
+		}
+
+		public void ResetQTEKey()
+		{
+			keyImage.sprite = regularKey;
+		}
 	}
 }

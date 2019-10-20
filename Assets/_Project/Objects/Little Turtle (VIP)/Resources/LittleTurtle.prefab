@@ -669,6 +669,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuickTimeEventUI
       objectReference: {fileID: 0}
+    - target: {fileID: 696244378717229385, guid: dfef67b0b43af55419a2f933d58415ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3701385997041970810, guid: dfef67b0b43af55419a2f933d58415ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -774,6 +779,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6190770934446321086, guid: dfef67b0b43af55419a2f933d58415ec,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3196937997631267810, guid: dfef67b0b43af55419a2f933d58415ec,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -783,11 +793,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -152
-      objectReference: {fileID: 0}
-    - target: {fileID: 6190770934446321086, guid: dfef67b0b43af55419a2f933d58415ec,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfef67b0b43af55419a2f933d58415ec, type: 3}
