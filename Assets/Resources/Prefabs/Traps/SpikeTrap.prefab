@@ -126,7 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatedColor: {r: 1, g: 0, b: 0, a: 0}
   activeTime: 0.5
-  range: 2
+  range: 1
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   spikeSprites: {fileID: 7374753255059102758}
   spikeDamageAmount: 2
 --- !u!1 &7374753255059102758
@@ -144,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7374753255059103193
 Transform:
   m_ObjectHideFlags: 0

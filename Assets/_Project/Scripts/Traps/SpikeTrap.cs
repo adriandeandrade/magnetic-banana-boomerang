@@ -30,14 +30,16 @@ public class SpikeTrap : Trap
 
 		if (otherObjects.Count > 0)
 		{
-			foreach (GameObject otherObject in otherObjects)
+            print("damage");
+            foreach (GameObject otherObject in otherObjects)
 			{
-				Vector2 dir = otherObject.transform.position - transform.position;
+				//Vector2 dir = otherObject.transform.position - transform.position;
 				IDamageable damageable = otherObject.GetComponent<IDamageable>();
 
 				if (damageable != null)
 				{
-					damageable.TakeDamage(spikeDamageAmount, dir);
+                    
+					damageable.TakeDamage(spikeDamageAmount, Vector2.zero);
 				}
 			}
 		}
