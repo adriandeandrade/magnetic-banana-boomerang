@@ -23,9 +23,12 @@ public class StallTrap : Trap
 
     public override void Activate()
     {
-        InitializeTimer();
-        anim.SetTrigger("activate");
-        ApplyStall();
+        if (!active)
+        {
+            InitializeTimer();
+            anim.SetTrigger("activate");
+            ApplyStall();
+        }   
     }
 
     public override void Deactivate()

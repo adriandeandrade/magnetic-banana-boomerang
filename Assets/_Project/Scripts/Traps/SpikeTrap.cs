@@ -5,23 +5,34 @@ using MagneticBananaBoomerang.Characters;
 
 public class SpikeTrap : Trap
 {
-	// Inspector Fields
-	[Tooltip("Object which holds the spikes graphics.")]
+    Animator anim;
+    // Inspector Fields
+    [Tooltip("Object which holds the spikes graphics.")]
 	[SerializeField] private GameObject spikeSprites;
 	[Tooltip("The amount of damage the spikes will deal.")]
 	[SerializeField] private float spikeDamageAmount;
 
-	public override void Activate()
+    protected override void Start()
+    {
+        base.Start();
+        anim = GetComponent<Animator>();
+    }
+
+    public override void Activate()
 	{
-		InitializeTimer();
-		spikeSprites.SetActive(true);
-		ApplyDamage();
+        if (!active)
+        {
+            InitializeTimer();
+            anim.SetTrigger("activate");
+            //spikeSprites.SetActive(true);
+            ApplyDamage();
+        }	
 	}
 
 	public override void Deactivate()
 	{
 		active = false;
-		spikeSprites.SetActive(false);
+		//spikeSprites.SetActive(false);
 	}
 
 	private void ApplyDamage()
