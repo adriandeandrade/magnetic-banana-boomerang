@@ -49,23 +49,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-<<<<<<< HEAD
   - {fileID: 11400000, guid: 10b1780a981424046811a1b2043a7e5a, type: 2}
   - {fileID: 11400000, guid: 904a88448cc1df84ab5875915ad3e02d, type: 2}
   - {fileID: 11400000, guid: 829dd8d81131ec247ace095fee787ce6, type: 2}
-=======
-  - {fileID: 11400000, guid: 647efb9be5e524deca20c6bcf6ecf78f, type: 2}
->>>>>>> origin/trap-improvements
   spawnPoints:
   - {fileID: 4456378792699714597}
   - {fileID: 4456378792633457965}
   - {fileID: 4456378792957571853}
   - {fileID: 4456378792540799223}
-<<<<<<< HEAD
   intermissionTime: 10
-=======
-  intermissionTime: 20
->>>>>>> origin/trap-improvements
   roundStartTime: 5
   enemyPrefab: {fileID: 2455228611323347956, guid: 82a5c5028ee94c4448f7ce804adae0ed,
     type: 3}

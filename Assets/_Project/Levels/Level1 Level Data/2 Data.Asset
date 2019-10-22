@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypes:
   - {fileID: 2455228611323347956, guid: 82a5c5028ee94c4448f7ce804adae0ed, type: 3}
-  numberOfEnemiesToSpawn: 6
+  - {fileID: 51326461889574852, guid: 6a11a8799d4bdd44a92db4564f6949cc, type: 3}
+  numberOfEnemiesToSpawn: 7
   timeBetweenSpawns: 1.5
+  rewardAmount: 6

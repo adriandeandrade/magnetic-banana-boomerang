@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30339c5f15785d9459cdd88865efb395, type: 3}
-  m_Name: 1 Data
+  m_Name: 3 Data
   m_EditorClassIdentifier: 
   enemyTypes:
-  - {fileID: 2455228611323347956, guid: 82a5c5028ee94c4448f7ce804adae0ed, type: 3}
-  numberOfEnemiesToSpawn: 3
-  timeBetweenSpawns: 2
+  - {fileID: 1806369729922752212, guid: 427f64b4cae62e044a1008d8291ebe85, type: 3}
+  numberOfEnemiesToSpawn: 10
+  timeBetweenSpawns: 3
+  rewardAmount: 8

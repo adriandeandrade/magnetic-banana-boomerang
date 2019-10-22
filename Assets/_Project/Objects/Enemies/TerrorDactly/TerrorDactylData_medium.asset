@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e063c2c8e57ef724b988e18f27e12767, type: 3}
+  m_Name: TerrorDactylData_medium
+  m_EditorClassIdentifier: 
+  characterName: TestRangedEnemy
+  characterType: 1
+  health: {fileID: 11400000, guid: 5d51def4bd408a74fadd55d94f906c50, type: 2}
+  projectilePrefab: {fileID: 2695238922596024063, guid: 44fddb2670d8bfd46add9a8ecac9ab5d,
+    type: 3}
+  projectileSpeed: 300
+  fireRate: 2.5
+  fireDelay: 1
+  accuracy: 0.09
+  damageAmount: 2

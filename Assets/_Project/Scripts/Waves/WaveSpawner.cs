@@ -22,6 +22,7 @@ public class WaveSpawner : MonoBehaviour
     private int waveIndex = 0; // The current position in the list of waves. Used to determind what wave data to reference.
     private int enemiesToKill; // The amount of enemies that need to be killed for the wave to end.
     private int enemiesKilled; // The amount of enemies that have been killed from the current wave.
+    private bool intermission = false;
 
     // Components
     private WaveSpawnerUI waveSpawnerUI;
@@ -29,6 +30,8 @@ public class WaveSpawner : MonoBehaviour
     // Properties
     public int EnemiesKilled { set => enemiesKilled = value; }
     public int WaveIndex { get => waveIndex; }
+
+    public bool Intermission { get => intermission; }
 
     /// <summary>Called by the GameManager when the game or section starts.</summary>>
     public void StartFirstRound(WaveSpawnerUI uiToUpdate)
@@ -47,17 +50,13 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < wave.numberOfEnemiesToSpawn; i++) // Spawn the enemies.
         {
             //SpawnEnemy(wave.GetRandomEnemyType());
-            SpawnEnemy(enemyPrefab);
+            SpawnEnemy(wave.enemyTypes[Random.Range(0, wave.enemyTypes.Count)]);
             yield return new WaitForSeconds(1f / wave.timeBetweenSpawns);
         }
 
         if (waveIndex + 1 >= waves.Count)
         {
             yield break;
-        }
-        else
-        {
-            waveIndex++;
         }
     }
 
@@ -96,15 +95,28 @@ public class WaveSpawner : MonoBehaviour
         yield return new WaitForSeconds(animationFinishTime + 0.5f);
 
         newTimer.StartTimer(intermissionTime);
+        intermission = true;
 
         // TODO: Reward player here. (Add to skillpoints)
-        Toolbox.instance.GetGameManager().PlayerRef.PlayerInventory.AddSkillPoint(2);
+        Toolbox.instance.GetGameManager().PlayerRef.PlayerInventory.AddSkillPoint(waves[waveIndex].rewardAmount);
+
+        if (waveIndex + 1 >= waves.Count)
+        {
+            // Game Over
+            yield break;
+        }
+        else
+        {
+            waveIndex++;
+        }
 
         while (newTimer != null) // Run the countdown until the timer is null. (The timer gets destroyed automatically when it reaches 0.)
         {
             waveSpawnerUI.SetCountdownText("Intermission: " + newTimer.TimeLeft);
             yield return null;
         }
+
+        intermission = false;
 
         waveSpawnerUI.SetCountdownText("Round Starting!");
         yield return new WaitForSeconds(0.5f);

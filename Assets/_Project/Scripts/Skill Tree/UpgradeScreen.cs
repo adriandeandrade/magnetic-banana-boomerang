@@ -13,6 +13,7 @@ public class UpgradeScreen : MonoBehaviour
     [SerializeField] private List<StatUpgradeUIElement> upgradesUIElements;
     [SerializeField] private TextMeshProUGUI availableSkillPointsText;
     [SerializeField] private StatManager statManager;
+    [SerializeField] private WaveSpawner waveSpawner;
 
     // Private Variables
     private bool menuOpen = false;
@@ -26,13 +27,23 @@ public class UpgradeScreen : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !menuOpen)
+        waveSpawner = FindObjectOfType<WaveSpawner>();
+
+        if(waveSpawner != null)
         {
-            OpenUpgradeScreen();
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab) && menuOpen)
-        {
-            CloseUpgradeScreen();
+            if (Input.GetKeyDown(KeyCode.Tab) && !menuOpen && waveSpawner.Intermission)
+            {
+                OpenUpgradeScreen();
+            }
+            else if (Input.GetKeyDown(KeyCode.Tab) && menuOpen)
+            {
+                CloseUpgradeScreen();
+            }
+
+            if(menuOpen && !waveSpawner.Intermission)
+            {
+                CloseUpgradeScreen();
+            }
         }
     }
     private void InitializeUpgrades()
@@ -70,14 +81,12 @@ public class UpgradeScreen : MonoBehaviour
         menuOpen = true;
         upgradeScreenPanel.SetActive(true);
         UpdateUpgradeScreen();
-        Time.timeScale = 0;
     }
 
     public void CloseUpgradeScreen()
     {
         menuOpen = false;
         upgradeScreenPanel.SetActive(false);
-        Time.timeScale = 1;
     }
 
     public void UpdateUpgradeScreen()

@@ -11,6 +11,7 @@ public class Wave : ScriptableObject
     public int numberOfEnemiesToSpawn;
     [Tooltip("How long to wait before spawning a new enemy.")]
     public float timeBetweenSpawns;
+    public int rewardAmount;
 
     public GameObject GetRandomEnemyType()
     {
