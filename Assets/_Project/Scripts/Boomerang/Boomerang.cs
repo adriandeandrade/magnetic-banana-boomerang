@@ -12,7 +12,7 @@ public class Boomerang : MonoBehaviour
 	[Tooltip("The speed at which the boomerang travels.")]
 	[SerializeField] private float speed = 10f;
 	[SerializeField] private float damageFallOffAmount = 0.20f;
-	[SerializeField] private Stat boomerangStat;
+	[SerializeField] private StatOld boomerangStat;
 
 	// Private Variables
 	private GameObject detectedObjectInstance; // Gets set when a new boomerang is spawned and initialized with data from BoomerangManager.
@@ -39,7 +39,8 @@ public class Boomerang : MonoBehaviour
 	{
 		boomerangManager = _boomerangManager;
 		detectedObjectInstance = _detectedObjectInstance;
-		nextDamage = player.PlayerStats.GetStatValue(boomerangStat);
+        // TODO: Hook up correct stat value.
+		nextDamage = 1;
 
 		if (detectedObjectInstance != null)
 		{
@@ -99,9 +100,9 @@ public class Boomerang : MonoBehaviour
 							_enemy.TakeDamage(nextDamage, Vector2.zero, player);
 
 							// TODO: Have a look at this again.
-							if(nextDamage - damageFallOffAmount * player.PlayerStats.GetStatValue(boomerangStat) > 0)
+							if(nextDamage - damageFallOffAmount * 1 > 0)
 							{
-								nextDamage -= damageFallOffAmount * player.PlayerStats.GetStatValue(boomerangStat);
+								nextDamage -= damageFallOffAmount * 1;
 							}
 
 							objectsHit.Add(detectedObject.gameObject);

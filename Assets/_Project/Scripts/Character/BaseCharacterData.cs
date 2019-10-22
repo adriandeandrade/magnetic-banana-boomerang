@@ -8,5 +8,5 @@ public class BaseCharacterData : ScriptableObject
     [Header("Settings")]
     public string characterName;
     public CharacterType characterType;
-    public Stat health;
+    public StatOld health;
 }

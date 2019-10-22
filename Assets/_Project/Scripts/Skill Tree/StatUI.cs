@@ -56,11 +56,11 @@ public class StatUI : MonoBehaviour
 		skillPointAmountText.SetText(Toolbox.instance.GetGameManager().PlayerRef.PlayerInventory.SkillPoints.ToString());
 	}
 
-	public void InitializeStatsUI(Dictionary<Stat, float> _stats)
+	public void InitializeStatsUI(Dictionary<StatOld, float> _stats)
 	{
 		ClearCurrentButtons();
 
-		foreach (KeyValuePair<Stat, float> stat in _stats)
+		foreach (KeyValuePair<StatOld, float> stat in _stats)
 		{
 			GameObject newUpgradeButton = Instantiate(statUpgradeButtonPrefab);
 			newUpgradeButton.transform.parent = statsUIPanel.transform;
@@ -73,9 +73,9 @@ public class StatUI : MonoBehaviour
 		}
 	}
 
-	public void UpgradeStat(Stat statToUpgrade)
+	public void UpgradeStat(StatOld statToUpgrade)
 	{
-		statManager.UpgradeStat(statToUpgrade);
+		//statManager.UpgradeStat(statToUpgrade);
 	}
 
 	private void ClearCurrentButtons()

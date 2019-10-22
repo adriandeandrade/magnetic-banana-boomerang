@@ -56,12 +56,6 @@ public class Player : BaseCharacter
 	{
 		HandleMovement();
 		base.Update();
-
-		// Debug: TODO: Remove this!
-		if(Input.GetKeyDown(KeyCode.P))
-		{
-			TakeDamage(5f, Vector2.zero);
-		}
 	}
 
 	private void HandleMovement()

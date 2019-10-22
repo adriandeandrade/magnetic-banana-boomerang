@@ -143,8 +143,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 0804dcddfae3d624c97f1fa211134012, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -218,8 +216,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 47c1b888fb7db0f49a32cf16e1f75226, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -303,10 +299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -393,8 +389,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 42aba4678623a934ebd1928d33ec8360, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -440,7 +434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 181.2, y: 127.2}
+  m_AnchoredPosition: {x: 181.2002, y: 127.200195}
   m_SizeDelta: {x: 165.7, y: 114.79999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8724242662877344972
@@ -592,7 +586,7 @@ MonoBehaviour:
   outOfBoundsCooldown: 1
   fleeCooldown: 2
   qteCooldown: 3
-  quickTimeEvent: {fileID: 0}
+  quickTimeEvent: {fileID: 1209584145197469992}
 --- !u!114 &219344105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,3 +796,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8357104068803781919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1209584145197469992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7148104864343913527, guid: dfef67b0b43af55419a2f933d58415ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 8357104068803781919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b3c33b528372347a09021746e7c1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22184705d19f2a44dadee656f9973734, type: 3}
-  m_Name: BaseBoomerangDamage
+  m_Name: Health
   m_EditorClassIdentifier: 
-  statName: Base Boomerang Damage
-  statBaseValue: 1
+  statName: Health
+  statBaseValue: 10
   upgradeCost: 2
-  upgradeAmount: 2
+  upgradeAmount: 1

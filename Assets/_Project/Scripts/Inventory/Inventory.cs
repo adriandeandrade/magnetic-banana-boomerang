@@ -16,9 +16,17 @@ public class Inventory : MonoBehaviour
 	// Properties
 	public int SkillPoints { get => skillPoints; }
 
-	// Events
+    // Events
 
-	public void AddItem(Item itemToAdd, int amountToAdd)
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            AddSkillPoint(1);
+        }
+    }
+
+    public void AddItem(Item itemToAdd, int amountToAdd)
 	{
 		if (CheckIfItemExists(itemToAdd))
 		{

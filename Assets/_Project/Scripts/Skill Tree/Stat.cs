@@ -1,14 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "New Stat", menuName = "Stats/New Stat")]
-public class Stat : ScriptableObject
+﻿[System.Serializable]
+public class Stat
 {
-    public string statName;
-    public float statBaseValue;
-    public int upgradeCost;
-    public float upgradeAmount; // The amount that will be added to the stat.
+    public string statTitle;
+    public string lookupName;
+    public int baseValue;
+    public int baseCost;
+    public float upgradeValue;
+    public StatTarget statTarget;
 
-    
+    public int currentCost;
+    public float currentValue;
+
+    public void InitStat()
+    {
+        currentCost = baseCost;
+        currentValue = baseValue;
+    }
+
+    public void IncrementCost(int newCost)
+    {
+        currentCost += newCost;
+    }
+    public void UpgradeStat()
+    {
+        currentValue += upgradeValue;
+    }
+}
+
+public enum StatTarget
+{
+    GORILLA,
+    TURTLE
 }
