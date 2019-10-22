@@ -761,6 +761,24 @@ MonoBehaviour:
   healthbar: {fileID: 237764057002704484}
   knockback: {fileID: 0}
   playerData: {fileID: 11400000, guid: b8791105869f6614bbe0aa596b21ec66, type: 2}
+  healthStat:
+    statTitle: 
+    lookupName: 
+    baseValue: 0
+    baseCost: 0
+    upgradeValue: 0
+    statTarget: 0
+    currentCost: 0
+    currentValue: 0
+  speedStat:
+    statTitle: 
+    lookupName: 
+    baseValue: 0
+    baseCost: 0
+    upgradeValue: 0
+    statTarget: 0
+    currentCost: 0
+    currentValue: 0
 --- !u!114 &7594850134884388393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744ba984575d5f4b85b008bc1e5d41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPoints: 10
+  skillPoints: 0
 --- !u!114 &181495858
 MonoBehaviour:
   m_ObjectHideFlags: 0

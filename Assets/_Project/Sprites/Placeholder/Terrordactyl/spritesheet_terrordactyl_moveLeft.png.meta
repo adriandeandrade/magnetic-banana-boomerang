@@ -1,0 +1,355 @@
+fileFormatVersion: 2
+guid: 3cebb37f633a5364bb31fae022754c9e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4558772450318185148
+    second: spritesheet_terrordactyl_moveLeft_0
+  - first:
+      213: 6212901600835410072
+    second: spritesheet_terrordactyl_moveLeft_1
+  - first:
+      213: -7718027286744076940
+    second: spritesheet_terrordactyl_moveLeft_2
+  - first:
+      213: 1756616954203167079
+    second: spritesheet_terrordactyl_moveLeft_3
+  - first:
+      213: 8142243311705049065
+    second: spritesheet_terrordactyl_moveLeft_4
+  - first:
+      213: 2740457790444369740
+    second: spritesheet_terrordactyl_moveLeft_5
+  - first:
+      213: 3399553264204171048
+    second: spritesheet_terrordactyl_moveLeft_6
+  - first:
+      213: -4198535076597256507
+    second: spritesheet_terrordactyl_moveLeft_7
+  - first:
+      213: -527507262872048652
+    second: spritesheet_terrordactyl_moveLeft_8
+  - first:
+      213: 4871578289403572593
+    second: spritesheet_terrordactyl_moveLeft_9
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 106
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c578b6ca8e8a59498d3a9e6a2456a66
+      internalID: -4558772450318185148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 106
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ef49a75fa9d85478b86b24c7ef990c
+      internalID: 6212901600835410072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_2
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 106
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b548a7f0a985f01458b035116bf8a10f
+      internalID: -7718027286744076940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_3
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 106
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ebd0de038c2b064cb4517060abae071
+      internalID: 1756616954203167079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_4
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 106
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ddbf98ba3458543986fa9d36483bf2
+      internalID: 8142243311705049065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da63bb7f5ff6334eb42995aced58eb7
+      internalID: 2740457790444369740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_6
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4013ec65b177a45b3e1ef3f214a567
+      internalID: 3399553264204171048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76489cef515e35c48988e731252058f5
+      internalID: -4198535076597256507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_8
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 351e0ab491c78cc4796c79ffaba52446
+      internalID: -527507262872048652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_terrordactyl_moveLeft_9
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 126
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c38be60d389b794696a5518038e7e00
+      internalID: 4871578289403572593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
