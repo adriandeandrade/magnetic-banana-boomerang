@@ -12,7 +12,7 @@ public class Boomerang : MonoBehaviour
 	[Tooltip("The speed at which the boomerang travels.")]
 	[SerializeField] private float speed = 10f;
 	[SerializeField] private float damageFallOffAmount = 0.20f;
-	[SerializeField] private StatOld boomerangStat;
+	[SerializeField] private Stat damageStat;
 
 	// Private Variables
 	private GameObject detectedObjectInstance; // Gets set when a new boomerang is spawned and initialized with data from BoomerangManager.
@@ -24,6 +24,7 @@ public class Boomerang : MonoBehaviour
 	private Player player;
 	private CircleCollider2D col;
 	private Rigidbody2D rBody;
+    private StatManager statManager;
 
 	// Events
 	public System.Action OnBoomerangPickedUpAction;
@@ -33,14 +34,17 @@ public class Boomerang : MonoBehaviour
 		col = GetComponent<CircleCollider2D>();
 		rBody = GetComponent<Rigidbody2D>();
 		player = Toolbox.instance.GetGameManager().PlayerRef;
+        statManager = FindObjectOfType<StatManager>();
 	}
 
-	public void InitializeBoomerang(BoomerangManager _boomerangManager, Vector2 targetDestinationPoint, GameObject _detectedObjectInstance = null)
+    public void InitializeBoomerang(BoomerangManager _boomerangManager, Vector2 targetDestinationPoint, GameObject _detectedObjectInstance = null)
 	{
 		boomerangManager = _boomerangManager;
 		detectedObjectInstance = _detectedObjectInstance;
-        // TODO: Hook up correct stat value.
-		nextDamage = 1;
+        damageStat = statManager.GetStatWithName("gorilla_base_damage");
+
+        nextDamage = damageStat.currentValue;
+        Debug.Log(nextDamage);
 
 		if (detectedObjectInstance != null)
 		{
@@ -100,10 +104,10 @@ public class Boomerang : MonoBehaviour
 							_enemy.TakeDamage(nextDamage, Vector2.zero, player);
 
 							// TODO: Have a look at this again.
-							if(nextDamage - damageFallOffAmount * 1 > 0)
+							if(nextDamage - damageFallOffAmount * damageStat.currentValue > 0)
 							{
-								nextDamage -= damageFallOffAmount * 1;
-							}
+								nextDamage -= damageFallOffAmount * damageStat.currentValue;
+                            }
 
 							objectsHit.Add(detectedObject.gameObject);
 						}

@@ -11,7 +11,7 @@ namespace MagneticBananaBoomerang.Characters
 		// Inspector Fields
 		[SerializeField] protected BaseCharacterData characterData;
 		[SerializeField] protected Color damageColor = Color.red;
-		[SerializeField] private Image healthbar;
+		[SerializeField] protected Image healthbar;
 
 		// Private Fields
 		protected float currentHealth;

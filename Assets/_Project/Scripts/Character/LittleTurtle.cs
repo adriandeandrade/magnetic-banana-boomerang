@@ -16,6 +16,8 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 	[SerializeField] private float fleeCooldown; // Amount of time before the vip begins fleeing.
     [SerializeField] private float qteCooldown = 3f;
 	[SerializeField] private QuickTimeEventSystem quickTimeEvent;
+    [SerializeField] private Stat healthStat;
+    [SerializeField] private Stat speedStat;
 
 	// Private variables
 	private EnemyStates currentState; // The vip's current state. (Same states as the enemy types.)
@@ -30,6 +32,7 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 	private PolyNavAgent agent;
 	private Camera cam;
 	private Player player;
+    private StatManager statManager;
 
 	// Properties
 	public EnemyStates CurrentState { get => currentState; set => currentState = value; }
@@ -53,11 +56,17 @@ public class LittleTurtle : BaseCharacter, IAICharacter
 
 		agent = GetComponent<PolyNavAgent>();
 		cam = Camera.main;
-	}
+        statManager = FindObjectOfType<StatManager>();
+        statManager.OnStatUpgraded += OnStatsUpgraded;
+    }
 
 	public override void Start()
 	{
-		base.Start();
+        healthStat = statManager.GetStatWithName("turtle_base_health");
+        speedStat = statManager.GetStatWithName("turtle_base_speed");
+        currentHealth = healthStat.currentValue;
+        moveSpeed = speedStat.currentValue;
+        agent.maxSpeed = moveSpeed;
 
 		player = Toolbox.instance.GetGameManager().PlayerRef; // Get reference to player.
 		quickTimeEvent.OnKeyPressedOnTime += FillHealthBar;
@@ -292,6 +301,24 @@ public class LittleTurtle : BaseCharacter, IAICharacter
     public override void OnDeath()
     {
         Toolbox.instance.GetGameManager().GameOver();
+    }
+
+    private void OnStatsUpgraded()
+    {
+        currentHealth = healthStat.currentValue;
+        moveSpeed = speedStat.currentValue;
+        agent.maxSpeed = moveSpeed;
+        RecalculateHealth(0);
+    }
+
+    public override void RecalculateHealth(float amount)
+    {
+        currentHealth -= amount;
+
+        if (healthbar != null)
+        {
+            healthbar.fillAmount = currentHealth / healthStat.baseValue;
+        }
     }
 
     public override void UpdateAnimator()

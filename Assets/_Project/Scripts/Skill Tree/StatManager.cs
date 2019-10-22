@@ -6,6 +6,8 @@ public class StatManager : MonoBehaviour
 {
 	// Inspector Fields
 	public List<Stat> startingStats = new List<Stat>();
+
+    public System.Action OnStatUpgraded;
     private void Awake()
     {
         InitializeStats();
@@ -17,8 +19,6 @@ public class StatManager : MonoBehaviour
         {
             stat.InitStat();
         }
-
-        Debug.Log("Stat init");
 	}
 
 	public void UpgradeStat(string statName)
@@ -26,6 +26,11 @@ public class StatManager : MonoBehaviour
         Stat stat = GetStatWithName(statName);
         stat.UpgradeStat();
         stat.IncrementCost(2);
+
+        if(OnStatUpgraded != null)
+        {
+            OnStatUpgraded.Invoke();
+        }
 	}
 
     public Stat GetStatWithName(string statName)

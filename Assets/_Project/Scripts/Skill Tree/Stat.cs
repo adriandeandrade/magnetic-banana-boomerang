@@ -3,7 +3,7 @@ public class Stat
 {
     public string statTitle;
     public string lookupName;
-    public int baseValue;
+    public float baseValue;
     public int baseCost;
     public float upgradeValue;
     public StatTarget statTarget;
@@ -24,6 +24,7 @@ public class Stat
     public void UpgradeStat()
     {
         currentValue += upgradeValue;
+        baseValue = currentValue;
     }
 }
 

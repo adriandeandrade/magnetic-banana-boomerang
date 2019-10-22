@@ -25,7 +25,6 @@ public class StatUpgradeUIElement : MonoBehaviour
     public void InitUpgrade(Stat _associatedStat)
     {
         associatedStat = _associatedStat;
-        Debug.Log(associatedStat.currentCost);
         upgradeAmountText.SetText($"+{associatedStat.upgradeValue}");
         upgradeTitle.SetText($"{associatedStat.statTitle}[{associatedStat.currentCost}]");
     }

@@ -7,6 +7,8 @@ public class Player : BaseCharacter
 {
 	// Inspector Fields
 	[SerializeField] private PlayerData playerData;
+    [SerializeField] private Stat healthStat;
+    [SerializeField] private Stat speedStat;
 
 	// Private Variables
 	private Inventory inventory;
@@ -50,9 +52,19 @@ public class Player : BaseCharacter
 		base.Awake();
 		inventory = GetComponent<Inventory>();
 		statManager = GetComponent<StatManager>();
-	}
+        statManager.OnStatUpgraded += OnStatsUpgraded;
 
-	public override void Update()
+    }
+
+    public override void Start()
+    {
+        healthStat = statManager.GetStatWithName("gorilla_base_health");
+        speedStat = statManager.GetStatWithName("gorilla_base_speed");
+        currentHealth = healthStat.currentValue;
+        moveSpeed = speedStat.currentValue;
+    }
+
+    public override void Update()
 	{
 		HandleMovement();
 		base.Update();
@@ -91,6 +103,22 @@ public class Player : BaseCharacter
 			//print("Triggered boomerang.");
 		}
 	}
+    private void OnStatsUpgraded()
+    {
+        currentHealth = healthStat.currentValue;
+        moveSpeed = speedStat.currentValue;
+        RecalculateHealth(0);
+    }
+
+    public override void RecalculateHealth(float amount)
+    {
+        currentHealth -= amount;
+
+        if (healthbar != null)
+        {
+            healthbar.fillAmount = currentHealth / healthStat.baseValue;
+        }
+    }
 
 	public PlayerData GetPlayerData()
 	{
