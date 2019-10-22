@@ -28,7 +28,10 @@ public abstract class Interactable : MonoBehaviour
 		if (!isHovering)
 		{
 			isHovering = true;
-			spriteRenderer.color = interactableData.hoverColor;
+            if (interactableData)
+            {
+                spriteRenderer.color = interactableData.hoverColor;
+            }			
 		}
 	}
 

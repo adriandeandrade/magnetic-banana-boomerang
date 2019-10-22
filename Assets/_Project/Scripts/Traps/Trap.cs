@@ -46,6 +46,8 @@ public abstract class Trap : MonoBehaviour
 				return;
 			}
 
+            UpdateCallback();
+
 			currentActiveTime -= Time.deltaTime;
 		}
 	}
@@ -53,7 +55,13 @@ public abstract class Trap : MonoBehaviour
 	public abstract void Activate();
 	public abstract void Deactivate();
 
-	protected void InitializeTimer()
+    protected virtual void UpdateCallback()
+    {
+
+    }
+
+
+    protected void InitializeTimer()
 	{
 		currentActiveTime = activeTime;
 		active = true;

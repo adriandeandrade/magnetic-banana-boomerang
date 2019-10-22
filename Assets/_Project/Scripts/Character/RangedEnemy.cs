@@ -28,8 +28,9 @@ public class RangedEnemy : BaseEnemy
 	public override void Start()
 	{
 		base.Start();
-		SetState(EnemyStates.IDLE);
-	}
+        //SetState(EnemyStates.IDLE);
+        SetState(EnemyStates.MOVING);
+    }
 
 	public override void Update()
 	{
@@ -65,8 +66,10 @@ public class RangedEnemy : BaseEnemy
 
 	public override void Idle()
 	{
-		SetState(EnemyStates.MOVING);
-	}
+        //SetState(EnemyStates.MOVING);
+        agent.Stop();
+        doShooting = false;
+    }
 
 	public override void Moving()
 	{
