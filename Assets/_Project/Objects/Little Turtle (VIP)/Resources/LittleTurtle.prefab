@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &585164536899713205
 GameObject:
@@ -143,6 +143,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 0804dcddfae3d624c97f1fa211134012, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -216,6 +218,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 47c1b888fb7db0f49a32cf16e1f75226, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -389,6 +393,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 42aba4678623a934ebd1928d33ec8360, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -523,7 +529,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!50 &8724242662877344945
 Rigidbody2D:
@@ -579,6 +585,7 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healthbar: {fileID: 3101719859012536990}
   knockback: {fileID: 0}
+  stall: {fileID: 0}
   fleeThreshold: 3.32
   fleeDestinationSearchRadius: 6.28
   defensiveKnockbackRadius: 2.26
@@ -587,6 +594,24 @@ MonoBehaviour:
   fleeCooldown: 2
   qteCooldown: 3
   quickTimeEvent: {fileID: 1209584145197469992}
+  healthStat:
+    statTitle: 
+    lookupName: 
+    baseValue: 0
+    baseCost: 0
+    upgradeValue: 0
+    statTarget: 0
+    currentCost: 0
+    currentValue: 0
+  speedStat:
+    statTitle: 
+    lookupName: 
+    baseValue: 0
+    baseCost: 0
+    upgradeValue: 0
+    statTarget: 0
+    currentCost: 0
+    currentValue: 0
 --- !u!114 &219344105
 MonoBehaviour:
   m_ObjectHideFlags: 0

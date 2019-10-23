@@ -215,6 +215,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 455bed94e5c2d804cb6a87243b8176ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -288,6 +290,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 1141a388c5c9d0345a8c2ce8941bcc42, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
@@ -376,7 +380,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &5371143234313398423
 GameObject:
@@ -538,6 +542,7 @@ MonoBehaviour:
   upgradesUIElements: []
   availableSkillPointsText: {fileID: 7063866852239414931}
   statManager: {fileID: 9145788097081204326}
+  waveSpawner: {fileID: 0}
 --- !u!1 &6062033259936593624
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +606,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 7f91e0659419009409d650dcbf2811d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -701,7 +708,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!95 &7594850134884388405
 Animator:
@@ -760,6 +767,7 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healthbar: {fileID: 237764057002704484}
   knockback: {fileID: 0}
+  stall: {fileID: 0}
   playerData: {fileID: 11400000, guid: b8791105869f6614bbe0aa596b21ec66, type: 2}
   healthStat:
     statTitle: 
@@ -1068,18 +1076,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1056069447189226556}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &2570954353598308438 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3245464540072363114, guid: bf4873b71235d1946bc3488c216509b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1056069447189226556}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &6728837974880560840 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6036595834402980596, guid: bf4873b71235d1946bc3488c216509b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1056069447189226556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7063866852239414931 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7827270346259067567, guid: bf4873b71235d1946bc3488c216509b3,
@@ -1092,3 +1088,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2570954353598308438 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3245464540072363114, guid: bf4873b71235d1946bc3488c216509b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1056069447189226556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6728837974880560840 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6036595834402980596, guid: bf4873b71235d1946bc3488c216509b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1056069447189226556}
+  m_PrefabAsset: {fileID: 0}

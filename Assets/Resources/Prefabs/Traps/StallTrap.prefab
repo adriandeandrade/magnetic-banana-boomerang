@@ -136,12 +136,12 @@ PrefabInstance:
     - target: {fileID: 6864343662126956068, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: 6864343662126956068, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.91
+      value: -3.023
       objectReference: {fileID: 0}
     - target: {fileID: 6864343662126956068, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
@@ -191,33 +191,33 @@ PrefabInstance:
     - target: {fileID: 6864343662126956068, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1418474
+      value: 1.5289428
       objectReference: {fileID: 0}
     - target: {fileID: 6864343662126956068, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1418474
+      value: 1.3667914
       objectReference: {fileID: 0}
     - target: {fileID: 6864343662126956068, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 15.81506
       objectReference: {fileID: 0}
-    - target: {fileID: 6864343662126956069, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
-        type: 3}
-      propertyPath: linkedTrap
-      value: 
-      objectReference: {fileID: 820552920429729942}
-    - target: {fileID: 6864343662126956071, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6864343662126956250, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6864343662126956071, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864343662126956069, guid: 9a880b0370cf57f4cb5cea9ca52334fa,
+        type: 3}
+      propertyPath: linkedTrap
+      value: 
+      objectReference: {fileID: 820552920429729942}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a880b0370cf57f4cb5cea9ca52334fa, type: 3}
 --- !u!4 &5772519714328861757 stripped
